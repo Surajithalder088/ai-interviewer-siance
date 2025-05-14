@@ -347,9 +347,10 @@ Personalized mock interviews ensure you’re ready to impress in any interview.
      interviewMode==="MockInterview" ?<div className="flex flex-col mx-[30vw] [@media(max-width:1100px)]:mx-[10px] h-fit bg-gray-400 p-[30px] gap-[20px] rounded-lg">
 
       <div className="flex items-center justify-between text-xl">
-      <p>Start Your Next Interview</p> <p
+      <p className="text-white">Start Your Next Interview</p> 
+      <p className="cursor-pointer"
       onClick={()=>setOpenTab(false)}
-      >close</p></div>
+      >X</p></div>
 
       <div className="flex flex-col w-full text-black py-[20px] gap-[10px] text-xl">
         <p>Resume</p>
@@ -381,9 +382,10 @@ Personalized mock interviews ensure you’re ready to impress in any interview.
       <div className="flex flex-col mx-[30vw] [@media(max-width:1100px)]:mx-[10px] h-fit bg-gray-400 p-[30px] gap-[20px] rounded-lg">
 
       <div className="flex items-center justify-between text-xl">
-      <p>Job Readiness Assessment</p> <p
+      <p className="text-white">Job Readiness Assessment</p> 
+      <p className="cursor-pointer"
       onClick={()=>setOpenTab(false)}
-      >close</p></div>
+      >X</p></div>
 
       <div className="flex flex-col w-full text-black py-[20px] gap-[10px] text-xl">
         <p>Position</p>

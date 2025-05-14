@@ -1,15 +1,52 @@
 import { useEffect, useState } from "react"
 
 import MenuNavbar from "../../components/MenuNavbar"
+import axios from "axios"
 
+const API_KEY='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'
 
 const AiCareerCoach = () => {
 
-
+  const [userInput,setUserInput]=useState("")
 const [showNavbar, setShowNavbar] = useState(true)
     const [lastscrollY, setLastScrollY] = useState(0)
        const [chatMode,setChatMode]=useState(false)
-  
+
+
+  const sendMessage =async()=>{
+    if(!userInput.trim()) return
+
+    setChatMode(true)
+    console.log(userInput);
+
+    try{
+      const response=await axios.post('https://openrouter.ai/api/v1/chat/completions',{
+        model:'openai/gpt-3.5-turbo',
+        messages:[
+          {role:"system",content:" You are strict technical interviewer, you cannot anser without javascript answer"},
+          {role:"user",content:  userInput}
+        ]
+      },{
+        headers:{
+           Authorization:`Bearer ${API_KEY}`,
+          'Content-Type':"application/json",
+         
+          "X-Title":"AI Interview App",
+          "HTTP-Referer":"http://localhost:5173/"
+        }
+      })
+
+      const aiReply= await response.data.choices[0].message.content||"No response"
+
+      console.log(aiReply);
+      setUserInput("")
+      
+
+    }catch(error){
+      console.log(error);
+      
+    }
+  }
   
     useEffect(()=>{
       const handleScroll=()=>{
@@ -79,11 +116,11 @@ const [showNavbar, setShowNavbar] = useState(true)
          
 
           <div className="w-full flex items-center justify-between border-1 border-gray-600 rounded-2xl p-[20px]">
-            <input type="text" className="outline-none min-w-fit w-[95%] " placeholder="Send a message  to AI Career Coach"/>
+            <input type="text" value={userInput} onChange={e=>setUserInput(e.target.value)} className="outline-none min-w-fit w-[95%] " placeholder="Send a message  to AI Career Coach"/>
 
             <div 
             
-            onClick={()=>setChatMode(true)}
+            onClick={sendMessage}
             className="w-[25px] cursor-pointer hover:rotate-270 hover:w-[27px]"><img src="/send-ai.png"/></div>
           </div>
 

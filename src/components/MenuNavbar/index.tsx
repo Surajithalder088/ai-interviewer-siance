@@ -10,6 +10,7 @@ const [navOpen,setNavOpen] = useState(false)
 const navigate=useNavigate()
 
 const [open,setOpen]=useState(false)
+const[userOpen,setUserOpen]=useState(false)
 
   return (
    <>
@@ -101,15 +102,41 @@ const [open,setOpen]=useState(false)
         </div>
     </div>
 
-    <div className="flex gap-4 bg-gray-400 rounded-full p-3">
-      user
+    <div
+    
+    className="flex gap-4 bg-gray-300 rounded-full p-1 border-1">
+      <img onClick={()=>setUserOpen(!userOpen)} src="/user-pro.svg" className="w-[20px]"/>
+      { userOpen===true?<div 
+       className={ `absolute mt-[60px]  border-gray-500 bg-white shadow-lg rounded-md text-black p-5 `}>
+           <div className=" flex justify-between items-center font-medium  text-gray-500  text-[15px] p-2 cursor-pointer">
+          
+             Hey User123
+
+            <p onClick={()=>setUserOpen(false)
+            }
+            className="hover:text-red-500 hover:bg-gray-500 px-2 py-1 rounded-full"
+            >X</p>
+
+           </div>
+           <p>user123@gmail.com</p>
+           <p> User123 Roy</p>
+           <p className="bg-gray-200 p-2 rounded-lg">Account Settings</p>
+
+           <p className="bg-white px-2 rounded-lg"> Logout</p>
+             
+          
+         </div>:""}
+
         </div>
+        
     </div>
 
     <div 
     onClick={()=>setOpen(!open)}
     className={` p-2    rounded cursor-pointer ${open?"mr-2":"mr-3.5 pr-[100px]"}`}>
         <img src={open?"/right-arrow.png":`/back.png`} className="bg-white rounded-full w-[40px]"/>
+      
+        
     </div>
    </div>
    {!navOpen && isHover===0 &&!open &&<div className="absolute left-0 bottom-0 w-full mt-0 h-0.5 overflow-hidden">
