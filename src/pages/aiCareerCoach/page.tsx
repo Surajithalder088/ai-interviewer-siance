@@ -2,8 +2,45 @@ import { useEffect, useState } from "react"
 
 import MenuNavbar from "../../components/MenuNavbar"
 import axios from "axios"
+import { systemInstructionCareerCoach } from "../../constants/systemInstructions/careerCoach"
 
-const API_KEY='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'
+type ChatMessageProps = {
+   role: "user" | "assistant";
+  message: string;
+};
+
+const API_KEY='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'
+
+
+
+// this below is to structure ai response
+
+const ChatMessage: React.FC<ChatMessageProps> = ({role, message }) => {
+  // Convert **bold** to <strong> and add spacing
+
+   const isUser = role === "user";
+  const formattedMessage = message
+    .replace(/\*\*(.*?)\*\*/g, "<strong class='text-blue-700 block text-[18px] font-semibold mt-4'>$1</strong>")
+    .replace(/\n/g, "<br/>")
+    .replace(/:/g, "<strong class='text-blue-500 block text-lg font-semibold mt-4'>-></strong>");
+
+
+  return (
+   <div className={`w-full flex ${!isUser ? "justify-start" : "justify-end"} mb-2`}>
+      <div
+        className={`max-w-[70%] p-4 text-sm rounded-2xl shadow-md leading-relaxed ${
+          isUser
+            ? "bg-gray-600 text-gray-200 rounded-tr-none"
+            : "bg-blue-100 text-black rounded-tl-none"
+        }`}
+        dangerouslySetInnerHTML={{ __html: formattedMessage }}
+      />
+    </div>
+
+  );
+};
+
+
 
 const AiCareerCoach = () => {
 
@@ -11,6 +48,13 @@ const AiCareerCoach = () => {
 const [showNavbar, setShowNavbar] = useState(true)
     const [lastscrollY, setLastScrollY] = useState(0)
        const [chatMode,setChatMode]=useState(false)
+       const[messages,setMessages]=useState([
+        {
+          sender: "system",
+      role: "system",
+      content: systemInstructionCareerCoach
+        }
+       ])
 
 
   const sendMessage =async()=>{
@@ -19,27 +63,35 @@ const [showNavbar, setShowNavbar] = useState(true)
     setChatMode(true)
     console.log(userInput);
 
+    const updatedMessages = [
+      ...messages,
+      { sender: "user", role: "user", content: userInput },
+    ];
+    setMessages(updatedMessages)
+    setUserInput("")
+
+
     try{
       const response=await axios.post('https://openrouter.ai/api/v1/chat/completions',{
         model:'openai/gpt-3.5-turbo',
-        messages:[
-          {role:"system",content:" You are strict technical interviewer, you cannot anser without javascript answer"},
-          {role:"user",content:  userInput}
-        ]
+        messages: updatedMessages.map(({ role, content }) => ({ role, content })),
       },{
         headers:{
-           Authorization:`Bearer ${API_KEY}`,
-          'Content-Type':"application/json",
-         
-          "X-Title":"AI Interview App",
-          "HTTP-Referer":"http://localhost:5173/"
+        Authorization: `Bearer ${API_KEY}`,
+        "Content-Type": "application/json",
+        "HTTP-Referer": "http://localhost:5173", // OR your real deployed domain
+        "X-Title": "Career Coach Chat",
         }
       })
 
       const aiReply= await response.data.choices[0].message.content||"No response"
+      setMessages((prev) => [
+        ...prev,
+        { sender: "ai", role: "assistant", content: aiReply },
+      ]);
 
       console.log(aiReply);
-      setUserInput("")
+      
       
 
     }catch(error){
@@ -84,7 +136,7 @@ const [showNavbar, setShowNavbar] = useState(true)
        <div className="flex flex-col items-center border-1 border-gray-500 w-full bg-gray-400 rounded-lg justify-center">
 
       {/* this is chat section  */}
-        <div className="flex items-center flex-col justify-around my-[40px] mx-[20px] gap-[50px]">
+        <div className="flex items-center flex-col min-w-[95%] min-h-[380px] justify-around my-[10px] mx-[20px] gap-[20px]">
            
          {
             chatMode===false?(
@@ -99,23 +151,24 @@ const [showNavbar, setShowNavbar] = useState(true)
           </>  ):
 
           (<>
-          <div className="flex flex-col  gap-2 max-h-[250px] overflow-y-scroll">
-            <p className="bg-gray-500 p-2 rounded-xl w-fit max-w-[70%] ml-[30%] h-fit ">How do I transition from my current career to a new field without taking a step back in salary?</p>
-            <p className="bg-gray-200 p-2 rounded-xl w-fit max-w-[70%]">Customize your resume for each job application by including keywords from the job description.
-                 Highlight relevant experience and skills that align with what the employer is seeking.</p>
-                  <p className="bg-gray-500 p-2 rounded-xl w-fit max-w-[70%] ml-[30%] h-fit ">How do I transition from my current career to a new field without taking a step back in salary?</p>
-            <p className="bg-gray-200 p-2 rounded-xl w-fit max-w-[70%]">Customize your resume for each job application by including keywords from the job description.
-                 Highlight relevant experience and skills that align with what the employer is seeking.</p>
-                  <p className="bg-gray-500 p-2 rounded-xl w-fit max-w-[70%] ml-[30%] h-fit ">How do I transition from my current career to a new field without taking a step back in salary?</p>
-            <p className="bg-gray-200 p-2 rounded-xl w-fit max-w-[70%]">Customize your resume for each job application by including keywords from the job description.
-                 Highlight relevant experience and skills that align with what the employer is seeking.</p>
+          <div className="flex flex-col text-[15px] gap-2 max-h-[300px] min-h-[290px] min-w-[95%] overflow-y-scroll">
+
+          {
+            messages.filter((msg) => msg.role !== "system").map((msg,idx)=>(
+               
+                 
+                <ChatMessage key={idx} role={msg.role as "user" | "assistant"} message={msg.content}/>
+               
+            ))
+          }
+           
           </div>
           
           </>)
           }
          
 
-          <div className="w-full flex items-center justify-between border-1 border-gray-600 rounded-2xl p-[20px]">
+          <div className="w-full flex items-center justify-between border-1 border-gray-600 rounded-2xl p-[10px]">
             <input type="text" value={userInput} onChange={e=>setUserInput(e.target.value)} className="outline-none min-w-fit w-[95%] " placeholder="Send a message  to AI Career Coach"/>
 
             <div 
