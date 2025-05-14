@@ -3,18 +3,23 @@ import Footer from "../../components/footer";
 import MenuNavbar from "../../components/MenuNavbar";
 import Navbar from "../../components/navbar";
 import QuestionAndAnswer from "../../components/Question&Answer";
+import { useNavigate } from "react-router-dom";
+
 
 
 const MockInterview = () => {
 
 
    
-  
+  const navigate= useNavigate()
     const [sideBarOpen,setSideBarOpen]=useState(false)
   
     const [showNavbar, setShowNavbar] = useState<boolean>(true)
        const lastScrollY = useRef(0);
        const [scrollUp, setScrollUp] = useState(false);
+
+       const[openTab,setOpenTab]=useState(false)
+       const[interviewMode,setInterviewMode]=useState<string>("")
     
     
        useEffect(() => {
@@ -59,8 +64,10 @@ const MockInterview = () => {
 
 
   return (
-    <>
-     <div className={`w-[100vw]  relative  h-full min-h-[100vh] bg-gradient-to-r from-black via-gray-600 to-black`}>
+    <>{
+
+      openTab===false?
+     (<div className={`w-[100vw]  relative  h-full min-h-[100vh] bg-gradient-to-r from-black via-gray-600 to-black`}>
       <div
     className={`flxed ${sideBarOpen===true?"hidden":""} top-0 w-full z-50 transition-transform  duration-300 ${showNavbar===true?"translate-y-0":"-translate-y-full"}`}
     >
@@ -87,13 +94,25 @@ const MockInterview = () => {
         <div className="flex items-center [@media(max-width:1100px)]:flex-col justify-around gap-[50px]">
 
            {/* below one is  mock interview based on specific job role */}
-          <div className="flex flex-col hover:bg-gray-300 w-[280px] hover:text-black cursor-pointer items-center py-3 px-6 border-1 border-gray-400 rounded-md bg-gray-500 text-white">
+          <div
+          onClick={()=>{
+            setOpenTab(true)
+            setInterviewMode("ReadinessAssessment")
+
+          }}
+          className="flex flex-col hover:bg-gray-300 w-[280px] hover:text-black cursor-pointer items-center py-3 px-6 border-1 border-gray-400 rounded-md bg-gray-500 text-white">
             <img src="/ai-assesment.png" className="w-[50px]"/>
             <p className="text-[15px] font-bold">Start Job Readiness Assessment</p>
           </div>
 
           {/* below one is normal mock interview based on yourt profile */}
-          <div className="flex flex-col hover:bg-gray-300 w-[250px] hover:text-black cursor-pointer items-center py-3 px-6 border-1 border-gray-400 rounded-md bg-gray-500 text-white">
+          <div 
+          onClick={()=>{
+            setOpenTab(true)
+            setInterviewMode("MockInterview")
+
+          }}
+          className="flex flex-col hover:bg-gray-300 w-[250px] hover:text-black cursor-pointer items-center py-3 px-6 border-1 border-gray-400 rounded-md bg-gray-500 text-white">
             <img src="/ai-mock.png" className="w-[50px]"/>
             <p className="text-[15px] font-bold">Start Mock Interview</p>
           </div>
@@ -318,6 +337,87 @@ Personalized mock interviews ensure you’re ready to impress in any interview.
 
     </div>
     </div>
+    
+  )
+    :
+   ( <div className=" h-full min-h-[100vh] flex flex-col items-cenetr justify-center  w-[100vw] bg-gradient-to-r from-black via-gray-600 to-black">
+    
+
+    {
+     interviewMode==="MockInterview" ?<div className="flex flex-col mx-[30vw] [@media(max-width:1100px)]:mx-[10px] h-fit bg-gray-400 p-[30px] gap-[20px] rounded-lg">
+
+      <div className="flex items-center justify-between text-xl">
+      <p>Start Your Next Interview</p> <p
+      onClick={()=>setOpenTab(false)}
+      >close</p></div>
+
+      <div className="flex flex-col w-full text-black py-[20px] gap-[10px] text-xl">
+        <p>Resume</p>
+        <input className="outline-1"/>
+        <p>Role</p>
+        <input className="outline-1"/>
+        <p>Select Knowledge Domain(Specialization) </p>
+       <input className="outline-1"/>
+        <p>Interview Type </p>
+       <input className="outline-1"/>
+
+        <p>Schedule your interview</p>
+      </div>
+
+      <div className="flex gap-10 text-black items-center">
+        <p
+        onClick={()=>setOpenTab(false)}
+        className="cursor-pointer hover:font-bold">Cancel</p>
+        <p   
+        onClick={()=>{
+          setOpenTab(false)
+        navigate("/interview/"+987)
+        }}
+        className=" bg-gray-600 rounded-lg p-2 cursor-pointer text-white">Launch</p>
+      </div>
+
+    </div>:
+
+      <div className="flex flex-col mx-[30vw] [@media(max-width:1100px)]:mx-[10px] h-fit bg-gray-400 p-[30px] gap-[20px] rounded-lg">
+
+      <div className="flex items-center justify-between text-xl">
+      <p>Job Readiness Assessment</p> <p
+      onClick={()=>setOpenTab(false)}
+      >close</p></div>
+
+      <div className="flex flex-col w-full text-black py-[20px] gap-[10px] text-xl">
+        <p>Position</p>
+        <input className="outline-1"/>
+        <p>Role Level</p>
+        <input className="outline-1"/>
+        <p>Company</p>
+       <input className="outline-1"/>
+        <p>Job Describtion </p>
+       <input className="outline-1"/>
+
+        <p>Company Details</p>
+
+          <input className="outline-1"/>
+      </div>
+
+      <div className="flex gap-10 text-black items-center">
+        <p
+        onClick={()=>setOpenTab(false)}
+        className="cursor-pointer hover:font-bold">Cancel</p>
+        <p   
+        onClick={()=>{
+          setOpenTab(false)
+        navigate("/interview/"+987)
+        }}
+        className=" bg-gray-600 rounded-lg p-2 cursor-pointer text-white">Launch</p>
+      </div>
+
+    </div>
+    
+    }
+
+    </div>)
+    }
     </>
   )
 }

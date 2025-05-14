@@ -9,6 +9,7 @@ import AutoApply from './pages/autoApply/page.tsx'
 import MockInterview from './pages/mockInterview/page.tsx'
 import AiCareerCoach from './pages/aiCareerCoach/page.tsx'
 import QuestionBank from './pages/questionBank/page.tsx'
+import Interview from './pages/interview/page.tsx'
 
 
 createRoot(document.getElementById('root')!).render(
@@ -23,6 +24,7 @@ createRoot(document.getElementById('root')!).render(
       <Route path="/mock-interview" element={<MockInterview/>} />
       <Route path="/interview-coach" element={<AiCareerCoach/>} />
        <Route path="/question-bank" element={<QuestionBank/>} />
+    <Route path="/interview/:id" element={<Interview />} />
 
     </Routes>
     </BrowserRouter>
