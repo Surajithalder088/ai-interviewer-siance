@@ -86,6 +86,8 @@ const[speaker,setSpeaker]=useState(true)
 
    const navigate=useNavigate()
 
+   const[started,setStarted]=useState(false)
+
 
 
     function splitTextIntoChunks(text: string, maxChunkLength = 180): string[] {
@@ -307,12 +309,26 @@ const[speaker,setSpeaker]=useState(true)
 
         </div>
 
-        <div className="w-full bg-gray-500 rounded-lg flex items-center justify-between gap-2 border-1  p-3">
+        {started===false?
+            <div className="w-full bg-gray-500 rounded-lg flex items-center justify-center gap-2 border-1  p-3">
+
+              <div
+              onClick={()=>{
+                setStarted(true)
+                sendMessage()
+              }}
+              className="bg-gray-300 text-black p-3 rounded-lg"
+              >Start Interview</div>
+            </div>:
+               <div className="w-full bg-gray-500 rounded-lg flex items-center justify-between gap-2 border-1  p-3">
           <input  type="text" value={userInput} onChange={e=>setUserInput(e.target.value)} className="w-[90%] outline-none"/>
          
             <img  onClick={sendMessage} className="w-[40px]" src="/send-call.svg"/>
           
         </div>
+        }
+
+     
     </div>
     </>
   )

@@ -149,8 +149,10 @@ const navigate=useNavigate()
     </div>
 
     <div className="flex gap-4">
-        <div className="hover:!bg-gray-200 hover:text-black text-white  !bg-transparent !font-bold !text-[15px] cursor-pointer rounded-xl flex items-center justify-center p-2 w-[100px]">Sign In</div>
-        <div className="hover:!bg-gray-200 hover:text-black !bg-gray-400 text-white !font-bold cursor-pointer rounded-xl flex items-center justify-center p-2  !text-[15px] w-[80px]">Sign Up</div>
+        <div 
+        onClick={()=>navigate('/sign-in')}
+        className="hover:!bg-gray-200 hover:text-black text-white  !bg-transparent !font-bold !text-[15px] cursor-pointer rounded-xl flex items-center justify-center p-2 w-[100px]">Sign In</div>
+        <div onClick={()=>navigate('/sign-in')} className="hover:!bg-gray-200 hover:text-black !bg-gray-400 text-white !font-bold cursor-pointer rounded-xl flex items-center justify-center p-2  !text-[15px] w-[80px]">Sign Up</div>
     </div>
    </div>
    {!navOpen && isHover===0 &&<div className="absolute left-0 bottom-0 w-full mt-0 h-0.5 overflow-hidden">

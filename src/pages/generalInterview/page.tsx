@@ -1,0 +1,54 @@
+import { useState } from "react"
+import { useNavigate } from "react-router-dom"
+
+
+const GeneralInterview = () => {
+const [speaker,setSpeaker]=useState(false)
+const [video,setVideo]=useState(false)
+
+const navigate=useNavigate()
+
+
+  return (
+    <div className="min-w-[100vw] h-[100vh] bg-gradient-to-bl from-gray-600 via-gray-200 to-gray-600">
+       
+       <div className="flex items-center justify-between p-3 bg-gray-500">
+        <div className="text-xl font-bold">Live Interview</div>
+         <div className="flex gap-3">
+
+            <div
+            onClick={
+              ()=>{
+                setVideo(!video)
+              }
+            }
+            className="bg-gradient-to-l from-pink-500 to-purple-500 p-1 rounded-full h-fit cursor-pointer border-1" >
+              <img className="w-[20px] h-[20px]" src={video?"/video-on.png":"/no-video.png"}/></div>
+
+             <div 
+             onClick={
+              ()=>{
+                setSpeaker(!speaker)
+              }
+            }
+             className="bg-gradient-to-l flex gap-1 from-pink-500 to-purple-500 p-1 rounded-full h-fi cursor-pointer border-1" >
+              <img className="w-[20px] h-[20px]" src={speaker?"/speaker.png":"/speaker-off.svg"}/>   </div>
+            
+            <div className="bg-gradient-to-l from-pink-500 to-purple-500 p-1 rounded-full h-fit cursor-pointer" >
+              <img className="w-[20px] h-[20px]" src="/setting-call.svg"/></div>
+
+             <div 
+             onClick={
+              ()=>{
+              navigate('/interview-copilot')
+              }
+            }
+              className="bg-gradient-to-l from-pink-500 to-purple-500 p-1 rounded-full h-fit cursor-pointer" ><img className="w-[20px] h-[20px]" src="/power-off.png"/></div>
+          </div>
+        </div>
+
+    </div>
+  )
+}
+
+export default GeneralInterview

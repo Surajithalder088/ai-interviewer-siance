@@ -13,6 +13,8 @@ import Interview from './pages/interview/page.tsx'
 import { Provider } from 'react-redux'
 import store from './store/store.ts'
 import SignIn from './pages/signIn/signIn.tsx'
+import GeneralInterview from './pages/generalInterview/page.tsx'
+import AiResumeEditor from './pages/resumeEditor/page.tsx'
 
 
 createRoot(document.getElementById('root')!).render(
@@ -28,7 +30,9 @@ createRoot(document.getElementById('root')!).render(
       <Route path="/interview-coach" element={<AiCareerCoach/>} />
        <Route path="/question-bank" element={<QuestionBank/>} />
     <Route path="/interview/:id" element={<Interview />} />
+     <Route path="/general-interview/:id" element={<GeneralInterview/>} />
      <Route path="/sign-in" element={<SignIn/>} />
+     <Route path="/ai-resume-editor" element={<AiResumeEditor/>} />
 
     </Routes>
     </BrowserRouter>

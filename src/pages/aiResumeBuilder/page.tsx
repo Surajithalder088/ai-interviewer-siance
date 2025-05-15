@@ -79,7 +79,9 @@ const AiResumeBuilder = () => {
           </div>
 
           {/* below one is normal mock interview based on yourt profile */}
-          <div className="flex flex-col hover:bg-gray-300 w-[250px] hover:text-black cursor-pointer items-center py-3 px-6 border-1 border-gray-300 rounded-md bg-gray-300 text-black">
+          <div 
+          onClick={()=>navigate('/ai-resume-editor')}
+          className="flex flex-col hover:bg-gray-300 w-[250px] hover:text-black cursor-pointer items-center py-3 px-6 border-1 border-gray-300 rounded-md bg-gray-300 text-black">
             <img src="/ai-resume.png" className="w-[20px]"/>
             <p className="text-[15px] font-bold">Create</p>
             <p className="text-[10px] text-gray-500">by AI Resume Builder</p>

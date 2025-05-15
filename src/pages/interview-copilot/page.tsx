@@ -94,7 +94,11 @@ const InterviewCopilot = () => {
        <div className="flex flex-col items-center justify-center">
 
         <div className="flex items-center justify-around gap-[50px]">
-          <div className="flex flex-col hover:bg-gray-300 w-[250px] hover:text-black cursor-pointer items-center py-3 px-6 border-1 border-gray-400 rounded-md bg-gray-500 text-white">
+          <div 
+          onClick={()=>{
+            navigate(`/general-interview/${654}`)
+          }}
+          className="flex flex-col hover:bg-gray-300 w-[250px] hover:text-black cursor-pointer items-center py-3 px-6 border-1 border-gray-400 rounded-md bg-gray-500 text-white">
             <img src="/laptop.png" className="w-[50px]"/>
             <p className="text-[15px] font-bold">General Interview</p>
           </div>
