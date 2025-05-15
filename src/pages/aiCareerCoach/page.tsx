@@ -8,8 +8,7 @@ type ChatMessageProps = {
    role: "user" | "assistant";
   message: string;
 };
-
-const API_KEY='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'
+const API_KEY=import.meta.env.VITE_GEMINI_API_KEY;
 
 
 

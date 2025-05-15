@@ -2,10 +2,22 @@ import { useEffect, useRef, useState } from "react"
 import {  systemInstructionInterviewer } from "../../constants/systemInstructions/careerCoach";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
 
 
+interface InterviewState {
+  role: string;
+  experience: string;
+  domain: string;
+  company:string;
+  jobDetails:string;
+  companyDetails:string;
+  // Add any other fields as needed
+}
 
-const API_KEY='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'
+
+const API_KEY=import.meta.env.VITE_GEMINI_API_KEY;
 
 type ChatMessageProps = {
    role: "user" | "assistant";
@@ -48,12 +60,22 @@ const ChatMessage: React.FC<ChatMessageProps> = ({role, message }) => {
 
 
 
+
+
 const Interview = () => {
+
+const interview:InterviewState = useSelector((state: RootState) => state.interview);
+
+const baseText= interview.company===""?`My name is Surajit Halder,the job role is ${interview.role} ,experience level is  ${interview.experience}, domain is  ${interview.domain}` :
+`My name is Surajit Halder,the job role is${interview.role},experience level is ${interview.experience}, domain is ${interview.domain}, the company is ${interview.company},Job details is for ${interview.jobDetails}, and company details ${interview.companyDetails}`
+
+
+
   const videoRef = useRef<HTMLVideoElement | null>(null);
 const [video,setVideo]=useState(false)
 const[speaker,setSpeaker]=useState(true)
  const [isPlaying, setIsPlaying] = useState(false);
- const [userInput,setUserInput]=useState('My name is Surajit Halder,the job role is frontend developer,experience level is fresher, domain is react js')
+ const [userInput,setUserInput]=useState(baseText)
   const[messages,setMessages]=useState([
          {
            sender: "system",

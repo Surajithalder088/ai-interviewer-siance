@@ -4,8 +4,9 @@ import MenuNavbar from "../../components/MenuNavbar";
 import Navbar from "../../components/navbar";
 import QuestionAndAnswer from "../../components/Question&Answer";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { RootState } from "../../store/store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../store/store";
+import { setInterview } from "../../store/interviewSlice";
 
 
 
@@ -16,11 +17,22 @@ interface UserState {
   // Add any other fields as needed
 }
 
+interface InterviewState {
+  role: string;
+  experience: string;
+  domain: string;
+  company:string;
+  jobDetails:string;
+  companyDetails:string;
+  // Add any other fields as needed
+}
+
 const MockInterview = () => {
 
 
    
    const user:UserState = useSelector((state: RootState) => state.user);
+   const dispatch=useDispatch<AppDispatch>();
 
    
   const navigate= useNavigate()
@@ -32,6 +44,14 @@ const MockInterview = () => {
 
        const[openTab,setOpenTab]=useState(false)
        const[interviewMode,setInterviewMode]=useState<string>("")
+
+
+       // these variable stores data for mock interview 
+       const[experience,setExperience]=useState("")
+       const[role,setRole]=useState("")
+       const[domain,setDomein]=useState("")
+       const[company,SetCompany]=useState("")
+       const[comapnyDetails,setCompanyDetails]=useState("")
     
     
        useEffect(() => {
@@ -374,11 +394,12 @@ Personalized mock interviews ensure you’re ready to impress in any interview.
 
       <div className="flex flex-col w-full text-black py-[20px] gap-[10px] text-xl">
         <p>Resume</p>
-        <input className="outline-1"/>
+        <p>Experience</p>
+        <input value={experience} onChange={(e)=>setExperience(e.target.value)} className="outline-1"/>
         <p>Role</p>
-        <input className="outline-1"/>
+        <input  value={role} onChange={(e)=>setRole(e.target.value)} className="outline-1"/>
         <p>Select Knowledge Domain(Specialization) </p>
-       <input className="outline-1"/>
+       <input value={domain} onChange={(e)=>setDomein(e.target.value)} className="outline-1"/>
         <p>Interview Type </p>
        <input className="outline-1"/>
 
@@ -391,6 +412,18 @@ Personalized mock interviews ensure you’re ready to impress in any interview.
         className="cursor-pointer hover:font-bold">Cancel</p>
         <p   
         onClick={()=>{
+          const data:InterviewState={
+            role,
+            experience,
+            domain,
+            company:"",
+            jobDetails:"",
+            companyDetails:""
+          }
+           dispatch(setInterview(data))
+            console.log(data);
+
+          
           setOpenTab(false)
         navigate("/interview/"+987)
         }}
@@ -408,18 +441,18 @@ Personalized mock interviews ensure you’re ready to impress in any interview.
       >X</p></div>
 
       <div className="flex flex-col w-full text-black py-[20px] gap-[10px] text-xl">
-        <p>Position</p>
-        <input className="outline-1"/>
+        <p>Position</p> {/*experience */}
+        <input value={experience} onChange={(e)=>setExperience(e.target.value)} className="outline-1"/>
         <p>Role Level</p>
-        <input className="outline-1"/>
+        <input value={role} onChange={(e)=>setRole(e.target.value)} className="outline-1"/>
         <p>Company</p>
-       <input className="outline-1"/>
-        <p>Job Describtion </p>
-       <input className="outline-1"/>
+       <input value={company} onChange={(e)=>SetCompany(e.target.value)} className="outline-1"/>
+        <p>Job Describtion </p>{/*domain */}
+       <input value={domain} onChange={(e)=>setDomein(e.target.value)} className="outline-1"/>
 
         <p>Company Details</p>
 
-          <input className="outline-1"/>
+          <input value={comapnyDetails} onChange={(e)=>setCompanyDetails(e.target.value)} className="outline-1"/>
       </div>
 
       <div className="flex gap-10 text-black items-center">
@@ -427,7 +460,19 @@ Personalized mock interviews ensure you’re ready to impress in any interview.
         onClick={()=>setOpenTab(false)}
         className="cursor-pointer hover:font-bold">Cancel</p>
         <p   
-        onClick={()=>{
+        onClick={async()=>{
+          const data:InterviewState={
+            role,
+            experience,
+            domain,
+            company,
+            jobDetails:domain,
+            companyDetails:comapnyDetails
+          }
+           dispatch(setInterview(data))
+           console.log(data);
+           
+
           setOpenTab(false)
         navigate("/interview/"+987)
         }}
