@@ -9,7 +9,7 @@ type ChatMessageProps = {
   message: string;
 };
 
-const API_KEY='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'
+const API_KEY='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'
 
 
 
