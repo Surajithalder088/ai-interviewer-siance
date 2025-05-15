@@ -10,11 +10,14 @@ import MockInterview from './pages/mockInterview/page.tsx'
 import AiCareerCoach from './pages/aiCareerCoach/page.tsx'
 import QuestionBank from './pages/questionBank/page.tsx'
 import Interview from './pages/interview/page.tsx'
+import { Provider } from 'react-redux'
+import store from './store/store.ts'
+import SignIn from './pages/signIn/signIn.tsx'
 
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-   
+    <Provider store={store}>
     <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />} />
@@ -25,9 +28,10 @@ createRoot(document.getElementById('root')!).render(
       <Route path="/interview-coach" element={<AiCareerCoach/>} />
        <Route path="/question-bank" element={<QuestionBank/>} />
     <Route path="/interview/:id" element={<Interview />} />
+     <Route path="/sign-in" element={<SignIn/>} />
 
     </Routes>
     </BrowserRouter>
-
+</Provider>
   </StrictMode>,
 )

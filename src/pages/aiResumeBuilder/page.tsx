@@ -3,6 +3,17 @@ import Footer from "../../components/footer"
 import Navbar from "../../components/navbar"
 import QuestionAndAnswer from "../../components/Question&Answer"
 import MenuNavbar from "../../components/MenuNavbar"
+import { useNavigate } from "react-router-dom"
+import { useSelector } from "react-redux"
+import { RootState } from "../../store/store"
+
+
+interface UserState {
+  name: string;
+  email: string;
+  token: string;
+  // Add any other fields as needed
+}
 
 
 const AiResumeBuilder = () => {
@@ -10,6 +21,9 @@ const AiResumeBuilder = () => {
     const [showNavbar, setShowNavbar] = useState(true)
     const [lastscrollY, setLastScrollY] = useState(0)
        const [sideBarOpen,setSideBarOpen]=useState(false)
+
+        const navigate= useNavigate()
+   const user:UserState = useSelector((state: RootState) => state.user);
   
   
     useEffect(()=>{
@@ -92,7 +106,17 @@ const AiResumeBuilder = () => {
                     <p className="text-4xl font-bold w-full p-4">AI Resume Builder Create a Job-Winning Resume in Minutes—100% Free</p>
                     <p className="text-2xl w-full p-4">Create tailored, ATS-optimized resumes that turn applications into offers</p>
                     <p
-                    onClick={()=>setSideBarOpen(true)}
+                    onClick={()=>{
+              if(user.name===""){
+                navigate('/sign-in')
+                return
+              }
+               setSideBarOpen(true) ; 
+                
+               
+               
+
+            }}
                     className="font-semibold py-3 px-5 bg-gray-500 cursor-pointer rounded-md w-fit text-white m-3">Get Started Now</p>
                 </div>
                 <div className="w-[50%] [@media(max-width:1100px)]:w-full"> <img src="/ai-image-builder.png"/></div>

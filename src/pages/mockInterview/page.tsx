@@ -4,11 +4,23 @@ import MenuNavbar from "../../components/MenuNavbar";
 import Navbar from "../../components/navbar";
 import QuestionAndAnswer from "../../components/Question&Answer";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
 
 
+
+interface UserState {
+  name: string;
+  email: string;
+  token: string;
+  // Add any other fields as needed
+}
 
 const MockInterview = () => {
 
+
+   
+   const user:UserState = useSelector((state: RootState) => state.user);
 
    
   const navigate= useNavigate()
@@ -144,7 +156,15 @@ const MockInterview = () => {
 
         
         <div 
-        onClick={()=>{setSideBarOpen(true) ;  setScrollUp(true)}}
+       
+            onClick={()=>{
+              if(user.name===""){
+                navigate('/sign-in')
+                return
+              }
+               setSideBarOpen(true) ; 
+                setScrollUp(true)
+            }}
         className=" flex py-2 bg-gray-400 text-[18px] my-3 text-white cursor-pointer px-3 rounded-xl hover:bg-gray-200 hover:text-gray-600 font-bold">Get started for free</div>
         </div>
 

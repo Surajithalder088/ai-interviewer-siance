@@ -4,6 +4,10 @@ import { motion } from "motion/react"
 import QuestionAndAnswer from "../../components/Question&Answer"
 import Footer from "../../components/footer"
 import MenuNavbar from "../../components/MenuNavbar"
+import { useSelector } from "react-redux"
+import { RootState } from "../../store/store"
+import { useNavigate } from "react-router-dom"
+
 
 
 
@@ -17,6 +21,10 @@ const InterviewCopilot = () => {
   const [showNavbar, setShowNavbar] = useState<boolean>(true)
      const lastScrollY = useRef(0);
      const [scrollUp, setScrollUp] = useState(false);
+
+
+      const user = useSelector((state: RootState) => state.user);
+      const navigate=useNavigate()
   
   
      useEffect(() => {
@@ -121,7 +129,18 @@ const InterviewCopilot = () => {
           <p className="text-[25px] text-center text-gray-400  [@media(max-width:1100px)]:text-[18px]">Get AI-powered responses that keep you calm, cool, and collected. Even when the pressure's on.</p>
         </div>
         <div 
-        onClick={()=>{setSideBarOpen(true) ;  setScrollUp(true)}}
+       
+        onClick={()=>{
+              if(user.name===""){
+                navigate('/sign-in')
+                return
+              }
+               setSideBarOpen(true) ; 
+                setScrollUp(true)
+               
+               
+
+            }}
         className=" flex py-2 bg-gray-400 text-[18px] my-3 text-white cursor-pointer px-3 rounded-xl hover:bg-gray-200 hover:text-gray-600 font-bold">Get started for free</div>
        
         <div className="flex flex-col items-center">

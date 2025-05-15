@@ -1,12 +1,25 @@
 
 
 import { motion } from "motion/react"
+import { useSelector } from "react-redux"
+import { useNavigate } from "react-router-dom"
+import { RootState } from "../../store/store"
 
+
+interface UserState {
+  name: string;
+  email: string;
+  token: string;
+  // Add any other fields as needed
+}
 
 const FirstSection = () => {
 
     const icons=["/airbnb_logo.svg","/expedia_group_logo.svg","/tiktok_logo.svg","/ey_logo.svg","/mckinsey__company_logo.svg","/pwc_logo.svg","/kpmg_logo.svg","/goldman_sachs_logo.svg","/tesla_logo.svg","stripe_logo.svg","/jp_morgan_logo.svg","/lockheed_martin_logo.svg","/airbnb_logo.svg","/expedia_group_logo.svg","/tiktok_logo.svg","/ey_logo.svg","/mckinsey__company_logo.svg","/pwc_logo.svg","/kpmg_logo.svg","/goldman_sachs_logo.svg","/tesla_logo.svg","stripe_logo.svg","/jp_morgan_logo.svg","/lockheed_martin_logo.svg",]
 
+
+   const navigate= useNavigate()
+   const user:UserState = useSelector((state: RootState) => state.user);
 
     
 
@@ -26,7 +39,18 @@ const FirstSection = () => {
                     <p> 1.2M+ Interviews Aced</p>
             </div>
 
-            <div className='bg-gray-400 p-4 flex  items-center justify-around gap-2 hover:gap-6 rounded-xl text-black hover:text-white hover:bg-gray-600 w-fit text-[20px] [@media(max-width:1100px)]:text-[18px] cursor-pointer'>
+            <div
+            onClick={()=>{
+              if(user.name===""){
+                navigate('/sign-in')
+                return
+              }
+               navigate('/interview-copilot')
+               console.log(user);
+               
+
+            }}
+            className='bg-gray-400 p-4 flex  items-center justify-around gap-2 hover:gap-6 rounded-xl text-black hover:text-white hover:bg-gray-600 w-fit text-[20px] [@media(max-width:1100px)]:text-[18px] cursor-pointer'>
               Activate AI Interview Mode Now  <p className="">{"->"}</p>
 
             </div>

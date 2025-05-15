@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import {  systemInstructionInterviewer } from "../../constants/systemInstructions/careerCoach";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -61,7 +62,7 @@ const[speaker,setSpeaker]=useState(true)
          }
         ])
 
-    const[textToSpeach,setTextToSpeach]=useState("")
+   const navigate=useNavigate()
 
 
 
@@ -255,11 +256,10 @@ const[speaker,setSpeaker]=useState(true)
              <div 
              onClick={
               ()=>{
-                setIsPlaying(!isPlaying)
-                speakText(userInput)
+              navigate('/mock-interview')
               }
             }
-              className="bg-gradient-to-l from-pink-500 to-purple-500 p-1 rounded-full h-fit cursor-pointer" ><img className="w-[20px] h-[20px]" src="/no-video.png"/></div>
+              className="bg-gradient-to-l from-pink-500 to-purple-500 p-1 rounded-full h-fit cursor-pointer" ><img className="w-[20px] h-[20px]" src="/power-off.png"/></div>
           </div>
 
 

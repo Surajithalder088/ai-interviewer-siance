@@ -4,6 +4,16 @@ import Footer from "../../components/footer"
 import QuestionAndAnswer from "../../components/Question&Answer"
 import { useEffect, useState } from "react"
 import MenuNavbar from "../../components/MenuNavbar"
+import { useNavigate } from "react-router-dom"
+import { useSelector } from "react-redux"
+import { RootState } from "../../store/store"
+
+interface UserState {
+  name: string;
+  email: string;
+  token: string;
+  // Add any other fields as needed
+}
 
 
  const icons=["/airbnb_logo.svg","/expedia_group_logo.svg","/tiktok_logo.svg","/ey_logo.svg","/mckinsey__company_logo.svg","/pwc_logo.svg","/kpmg_logo.svg","/goldman_sachs_logo.svg","/tesla_logo.svg","stripe_logo.svg","/jp_morgan_logo.svg","/lockheed_martin_logo.svg","/airbnb_logo.svg","/expedia_group_logo.svg","/tiktok_logo.svg","/ey_logo.svg","/mckinsey__company_logo.svg","/pwc_logo.svg","/kpmg_logo.svg","/goldman_sachs_logo.svg","/tesla_logo.svg","stripe_logo.svg","/jp_morgan_logo.svg","/lockheed_martin_logo.svg",]
@@ -16,6 +26,9 @@ const AutoApply = () => {
       const [lastscrollY, setLastScrollY] = useState(0)
       const [sideBarOpen,setSideBarOpen]=useState(false)
       const[jobState,setJobState]=useState<string>("profile")
+
+         const navigate= useNavigate()
+   const user:UserState = useSelector((state: RootState) => state.user);
     
     
       useEffect(()=>{
@@ -118,7 +131,14 @@ const AutoApply = () => {
                     <p className="text-xl text-gray-500 text-center">No more endless applications, resume tweaks, or waiting for responses. Upload your CV. Select the type of job you want, 
                         and Final Round AI will find relevant positions and apply for you automatically.</p>
                     <p  
-                    onClick={()=>setSideBarOpen(true)}
+                     onClick={()=>{
+              if(user.name===""){
+                navigate('/sign-in')
+                return
+              }
+               setSideBarOpen(true) ; 
+                
+            }}
                     className="bg-gray-500 cursor-pointer py-3 px-5 rounded-md w-fit text-white font-bold">Get More Interviews Today</p>
                 </div>
                 <div>
