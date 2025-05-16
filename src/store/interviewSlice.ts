@@ -27,6 +27,8 @@ const interviewSlice = createSlice({
   initialState,
   reducers: {
     setInterview: (state, action: PayloadAction<InterviewState>) => {
+      console.log(state);
+      
       return action.payload;
     },
     clearInterview: () => {

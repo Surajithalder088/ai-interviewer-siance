@@ -27,7 +27,7 @@ const IntervieewsReviews = () => {
                 className="flex flex-row gap-4 items-center justify-start w-full h-full min-w-screen"
                                  
                                 >
-                                        {intervieewReviewList.map((review,id) => (
+                                        {intervieewReviewList.map((review) => (
                                                 <div key={review.id} 
                                                 className="flex flex-col gap-8 bg-transparent p-8 rounded-2xl min-w-[400px] "
                                                 >

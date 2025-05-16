@@ -1,5 +1,6 @@
-import { useState } from "react"
-
+import { useRef, useState } from "react"
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
 
 
 
@@ -11,6 +12,8 @@ const themeList:string[]=["#15803d","#6366f1","#0ea5e9","#fb923c"]
 
 const[font,setFont]=useState("Roboto")
 const fontList:string[]=["Roboto","Montserrat","Noto Serif","Open Sans"]
+
+const resumeRef = useRef<HTMLDivElement|any>(null);
 
 
 // below are variable for resume
@@ -48,14 +51,37 @@ const[projectDesc,setProjectDesc]=useState("")
 const[skills,setSkills]=useState("")
 
 
+const downloadPDF = async () => {
+    const element = resumeRef.current;
+    if (!resumeRef.current) return;
+
+    const canvas = await html2canvas(element, {
+      scale: 2,
+      useCORS: true,
+    });
+
+    const imgData = canvas.toDataURL("image/png");
+
+    const pdf = new jsPDF("p", "mm", "a4");
+    const imgProps = pdf.getImageProperties(imgData);
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+    pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
+    pdf.save("resume.pdf");
+  };
+
+
   return (
     <div className="min-w-[100vw] h-[100vh] bg-gray-700 p-[20px]">
         <div className="flex items-center justify-between text-white font-bold text-2xl">
             <p>AI Resume Builder</p>
 
             <div className="flex items-center gap-[20px]">
-                <p className="p-2 border-1 rounded-md text-xl font-light cursor-pointer">Download Resume</p>
-                <p className="p-2 bg-black font-light text-xl rounded-md cursor-pointer">Save</p>
+                <p 
+                onClick={downloadPDF}
+                className="p-2 border-1 rounded-md text-xl font-light cursor-pointer">Download Resume</p>
+                <p className="p-2 bg-black font-light text-xl rounded-md cursor-not-allowed">Save</p>
 
             </div>
         </div>
@@ -177,9 +203,19 @@ const[skills,setSkills]=useState("")
 
                 <div className="w-[50%] h-full flex items-center justify-center"
                 >
-                            <div className="min-w-[60%] !min-h-[450px] border-2 text-[8px] border-gray-400 bg-white my-[30px] p-[15px]">
+                          
+                          
+                          <div
+                                  ref={resumeRef}
+                                 className="min-w-[110mm] min-h-[150mm]  p-4 mx-auto"
+                                 style={{ fontSize: "8px",backgroundColor:"white",borderColor:"white" }}
+                             >  <div 
                             
-                            <div className="flex flex-col gap-2">
+                            className="min-w-[80mm]  !min-h-[110mm] border-2 text-[8px]  my-[30px] p-[15px]"
+                             style={{ fontSize: "8px",backgroundColor:"white",borderColor:"white" }}
+                            >
+                            
+                            <div className="flex flex-col my-3 gap-2">
                                 <p className="text-[13px] text-center" style={{color:themeColor}}>{name}</p>
                                 <div className="flex gap-3 text-[8px] justify-center">
                                     <p>{phone}</p>
@@ -232,6 +268,7 @@ const[skills,setSkills]=useState("")
 
                             </div>
                             <hr/>
+                            </div>
                             </div>
                 </div>
 

@@ -31,7 +31,7 @@ const GuideList = () => {
                 className="flex flex-row gap-4 items-center justify-start w-full h-full min-w-screen"
                                  
                                 >
-                                        {guideReviewList.map((review,id) => (
+                                        {guideReviewList.map((review) => (
                                             <div key={review.id} 
                                             className="flex flex-col gap-8 bg-white p-8 rounded-2xl min-w-[400px] "
                                             >

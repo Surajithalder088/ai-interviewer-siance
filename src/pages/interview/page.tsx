@@ -245,7 +245,7 @@ const[speaker,setSpeaker]=useState(true)
 
   return (
     <>
-    <div className={`w-[100vw]  relative  px-[100px] py-[70px] gap-4  h-full min-h-[100vh] bg-gradient-to-r from-black via-gray-600 to-black`}>
+    <div className={`w-[100vw] max-h-[100vh]  relative  px-[100px] py-[70px] gap-4  h-full min-h-[100vh] bg-gradient-to-r from-black via-gray-600 to-black`}>
 
         <div className="flex items-center justify-between p-[20px] bg-gray-500 text-white rounded-lg">
 
