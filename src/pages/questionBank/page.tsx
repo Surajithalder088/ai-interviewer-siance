@@ -1,8 +1,71 @@
+import { useEffect, useState } from "react"
+import Navbar from "../../components/navbar"
+
+
 
 
 const QuestionBank = () => {
+
+      const [showNavbar, setShowNavbar] = useState(true)
+      const [lastscrollY, setLastScrollY] = useState(0)
+
+
+
+  useEffect(()=>{
+      const handleScroll=()=>{
+        if(window.scrollY<lastscrollY){
+          setShowNavbar(true)
+        }else{
+          setShowNavbar(false)
+        }
+        setLastScrollY(window.scrollY)
+          
+      }
+  
+      window.addEventListener('scroll',handleScroll)
+      return () => {
+        window.removeEventListener('scroll',handleScroll)
+      }
+    },[lastscrollY])
+
+
   return (
-    <div>QuestionBank is under development</div>
+      <div className="w-[100vw]   h-full min-h-[100vh] bg-gradient-to-r from-black via-gray-600 to-black">
+         <div
+    className={`flxed  top-0 w-full z-50 transition-transform duration-300 ${showNavbar?"translate-y-0":"-translate-y-full"}`}
+    >
+        <Navbar/>
+        </div>
+
+     <div className="flex flex-col items-center">
+
+      <p className="text-4xl p-[30px] text-white">Question Bank</p>
+      <hr/>
+
+      <div className="w-[80%] text-gray-200 px-[40px]">
+        <div className="w-full py-4 flex items-center gap-[40px]">
+        <div className="px-3 py-1 border-1 rounded-md flex items-center justify-between gap-[30px] bg-gray-500 cursor-pointer">Category  <img src="/unfold.png" className="w-3"/></div>
+        <div className="px-3 py-1 border-1 rounded-md flex items-center justify-between gap-[30px] bg-gray-500 cursor-pointer">Company  <img src="/unfold.png" className="w-3"/></div>
+        <div className="px-3 py-1 border-1 rounded-md flex items-center justify-between gap-[30px] bg-gray-500 cursor-pointer">Difficulty Level  <img src="/unfold.png" className="w-3"/></div>
+        <div className="px-1 py-1 border-1 border-gray-400 rounded-md flex items-center justify-between gap-[30px] bg-gray-500 ">
+          <input placeholder="Search" className="outline-none p-1"/><img src="/search-icon.png" className="w-9 bg-gray-500 rounded-lg cursor-pointer hover:bg-gray-400"/>
+        </div>
+
+        </div>
+
+        <div>
+
+        </div>
+      </div>
+
+      <div className="w-[80%] border-1 rounded-lg p-[20px] ">
+
+      </div>
+
+
+     </div>
+
+    </div>
   )
 }
 

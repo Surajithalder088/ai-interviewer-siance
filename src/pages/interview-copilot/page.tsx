@@ -9,6 +9,14 @@ import { RootState } from "../../store/store"
 import { useNavigate } from "react-router-dom"
 
 
+const data = [
+  { name: "Surajit", email: "surajit@example.com", role: "Developer", location: "Kolkata" },
+  { name: "Alex", email: "alex@example.com", role: "Designer", location: "Bangalore" },
+  { name: "Rina", email: "rina@example.com", role: "Manager", location: "Hyderabad" },
+  { name: "Rina", email: "rina@example.com", role: "Manager", location: "Hyderabad" },
+];
+
+
 
 
 const icons=["/airbnb_logo.svg","/expedia_group_logo.svg","/tiktok_logo.svg","/ey_logo.svg","/mckinsey__company_logo.svg","/pwc_logo.svg","/kpmg_logo.svg","/goldman_sachs_logo.svg","/tesla_logo.svg","stripe_logo.svg","/jp_morgan_logo.svg","/lockheed_martin_logo.svg","/airbnb_logo.svg","/expedia_group_logo.svg","/tiktok_logo.svg","/ey_logo.svg","/mckinsey__company_logo.svg","/pwc_logo.svg","/kpmg_logo.svg","/goldman_sachs_logo.svg","/tesla_logo.svg","stripe_logo.svg","/jp_morgan_logo.svg","/lockheed_martin_logo.svg",]
@@ -120,6 +128,25 @@ const InterviewCopilot = () => {
         <div className="flex flex-col bg-gray-400 rounded-lg w-full min-h-[200px] mt-[50px]">
          
          <table>
+           <thead>
+          <tr className="bg-gray-200 text-left">
+            <th className="px-4 py-2 border">Interview</th>
+            <th className="px-4 py-2 border">Status</th>
+            <th className="px-4 py-2 border">Appointment</th>
+            <th className="px-4 py-2 border">Action</th>
+          </tr>
+        </thead>
+                <tbody>
+          {data.map((user, index) => (
+            <tr key={index} className="hover:bg-gray-100">
+              <td className="px-4 py-2 border">{user.name}</td>
+              <td className="px-4 py-2 border">{user.email}</td>
+              <td className="px-4 py-2 border">{user.role}</td>
+              <td className="px-4 py-2 border">{user.location}</td>
+            </tr>
+          ))}
+        </tbody>
+
           
          </table>
         </div>

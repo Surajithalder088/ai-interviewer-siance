@@ -14,10 +14,10 @@ const[userOpen,setUserOpen]=useState(false)
 
   return (
    <>
-   <div className={`[@media(max-width:1100px)]:hidden  ${open?"max-w-fit rounded-r-md ":"max-w-screen"}   flex justify-center items-center gap-4 h-[80px] bg-transparent backdrop-blur-md top-0 ${open?"bg-white":"bg-gradient-to-r from-gray-500 via-black to-gray-500 "}  `}>
+   <div className={`[@media(max-width:1100px)]:hidden  ${open?"max-w-fit rounded-r-md ":"max-w-screen"}   flex justify-center items-center gap-4 h-[80px] bg-transparent backdrop-blur-md top-0 ${open?"bg-white":"bg-gradient-to-r from-gray-800 via-black to-gray-500 "}  `}>
    <Link to='/'>
-   <div className="p-6 mt-10 w-[240px] h-[120px]">
-                    <img src="/full-logo.1087db35.svg"/>
+   <div className="p-6  w-[180px] h-[80px] flex items-center justify-center">
+                  <img className="w-9" src="/new_logo_siance.png"/>  <img className="h-7" src="/siaṇce.png"/>
                 </div></Link>
 
    <div className={`flex w-[80%] ${open?"hidden":""}`}>

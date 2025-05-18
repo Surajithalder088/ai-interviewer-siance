@@ -44,6 +44,7 @@ const MockInterview = () => {
 
        const[openTab,setOpenTab]=useState(false)
        const[interviewMode,setInterviewMode]=useState<string>("")
+       const[hoverDetail,setHoverDetail]=useState("")
 
 
        // these variable stores data for mock interview 
@@ -132,10 +133,26 @@ const MockInterview = () => {
             setInterviewMode("ReadinessAssessment")
 
           }}
+          onMouseEnter={()=>{
+            setHoverDetail("ReadinessAssessment")
+          }}
+          onMouseLeave={()=>{
+            setHoverDetail("")
+          }}
           className="flex flex-col hover:bg-gray-300 w-[280px] hover:text-black cursor-pointer items-center py-3 px-6 border-1 border-gray-400 rounded-md bg-gray-500 text-white">
             <img src="/ai-assesment.png" className="w-[50px]"/>
             <p className="text-[15px] font-bold">Start Job Readiness Assessment</p>
           </div>
+          {hoverDetail==="ReadinessAssessment"&& <div
+          onMouseEnter={()=>{
+            setHoverDetail("ReadinessAssessment")
+          }}
+          onMouseLeave={()=>{
+            setHoverDetail("")
+          }}
+          className="absolute mt-[180px] mr-[400px] h-fit max-w-[200px] shadow-2xl shadow-blue-700 z-100 bg-white p-4 rounded-b-2xl rounded-r-2xl">
+          <p>AI Mock Interview based on specific Job Profile!</p>
+          </div>}
 
           {/* below one is normal mock interview based on yourt profile */}
           <div 
@@ -144,10 +161,28 @@ const MockInterview = () => {
             setInterviewMode("MockInterview")
 
           }}
+          onMouseEnter={()=>{
+            setHoverDetail("MockInterview")
+          }}
+           onMouseLeave={()=>{
+            setHoverDetail("")
+          }}
           className="flex flex-col hover:bg-gray-300 w-[250px] hover:text-black cursor-pointer items-center py-3 px-6 border-1 border-gray-400 rounded-md bg-gray-500 text-white">
             <img src="/ai-mock.png" className="w-[50px]"/>
             <p className="text-[15px] font-bold">Start Mock Interview</p>
           </div>
+         {hoverDetail==="MockInterview"&& <div 
+          onMouseEnter={()=>{
+            setHoverDetail("MockInterview")
+          }}
+           onMouseLeave={()=>{
+            setHoverDetail("")
+          }}
+         className="absolute mt-[150px] ml-[200px] h-fit max-w-[200px] z-100 bg-white shadow-2xl shadow-blue-700 p-4 rounded-b-2xl rounded-r-2xl">
+          <p>AI Mock Interview based on Your Profile!</p>
+          </div>}
+
+
           <div className="flex flex-col hover:bg-gray-300 w-[250px] hover:text-black cursor-pointer items-center py-3 px-6 border-1 border-gray-400 rounded-md bg-gray-500 text-white">
             <img src="/ai-practice.png" className="w-[50px]"/>
             <p className="text-[15px] font-bold">Start Practicing Question</p>
