@@ -1,6 +1,7 @@
 import { useRef, useState } from "react"
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
+import axios from "axios";
 
 
 
@@ -81,6 +82,91 @@ const downloadPDF = async () => {
     pdf.save("resume.pdf");
   };
 
+  // ai methods to generate details
+
+  const userDetailGenerate=async()=>{
+                try{
+                    const response=await axios.post('https://ai-interview-copilote-api.onrender.com/chat',{
+       
+        messages: [ {sender: "system",role: "system",content: "user has provided some detail about him,generate a poffetional resume objective from this"},
+                    {sender:"user",role:"user",content:object}
+        ]
+      })
+       const aiReply=  response.data.reply.content
+       if(response.status===201){
+        setObject(aiReply)
+       }
+       console.log(aiReply);
+       
+                }catch(err){
+                    console.log(err);
+                    
+                }
+  }
+   const educationDetailGenerate=async(ind:number)=>{
+                try{
+                    const response=await axios.post('https://ai-interview-copilote-api.onrender.com/chat',{
+       
+        messages: [ {sender: "system",role: "system",content: "user has provided some detail about his education and degree,generate a small proffetional deatils within 15 words for resume from this"},
+                    {sender:"user",role:"user",content:schoolDetail[ind]}
+        ]
+      })
+       const aiReply=  response.data.reply.content
+       if(response.status===201){
+        let updatedArray=[...schoolDetail]
+        updatedArray[ind]=aiReply
+        setSchoolDetail(updatedArray)
+       }
+       console.log(aiReply);
+       
+                }catch(err){
+                    console.log(err);
+                    
+                }
+  }
+  const workDetailGenerate=async(ind:number)=>{
+                try{
+                    const response=await axios.post('https://ai-interview-copilote-api.onrender.com/chat',{
+       
+        messages: [ {sender: "system",role: "system",content: "user has provided some detail about his work and experience in a company,generate a small proffetional deatils within 45 words for resume from this"},
+                    {sender:"user",role:"user",content:jobDesc[ind]}
+        ]
+      })
+       const aiReply=  response.data.reply.content
+       if(response.status===201){
+        let updatedArray=[...jobDesc]
+        updatedArray[ind]=aiReply
+        setJobDesc(updatedArray)
+       }
+       console.log(aiReply);
+       
+                }catch(err){
+                    console.log(err);
+                    
+                }
+  }
+  const projectDetailGenerate=async(ind:number)=>{
+                try{
+                    const response=await axios.post('https://ai-interview-copilote-api.onrender.com/chat',{
+       
+        messages: [ {sender: "system",role: "system",content: "user has provided some detail about his project,generate a small proffetional deatils within 45 words for resume from this"},
+                    {sender:"user",role:"user",content:projectDesc[ind]}
+        ]
+      })
+       const aiReply=  response.data.reply.content
+       if(response.status===201){
+        let updatedArray=[...projectDesc]
+        updatedArray[ind]=aiReply
+        setProjectDesc(updatedArray)
+       }
+       console.log(aiReply);
+       
+                }catch(err){
+                    console.log(err);
+                    
+                }
+  }
+
 
   return (
     <div className="min-w-[100vw] h-[100vh] bg-gray-700 p-[20px]">
@@ -121,8 +207,8 @@ const downloadPDF = async () => {
 
                         <p>Website</p>
                         <input value={website} onChange={(e)=>setWebsite(e.target.value)} className="outline-none border-1 p-1 rounded-lg border-gray-400"/>
-                        <p>Objective</p>
-                        <input value={object} onChange={(e)=>setObject(e.target.value)} className="outline-none border-1 p-1 rounded-lg border-gray-400"/>
+                        <p className="flex items-center gap-[40px]">Objective  <p onClick={userDetailGenerate} className="text-[15px] bg-gray-400 hover:bg-cyan-400 p-1 cursor-pointer rounded-xl">Create with AI</p></p>
+                        <input value={object} placeholder="give some details aboute you to generate" onChange={(e)=>setObject(e.target.value)} className="outline-none border-1 p-1 rounded-lg border-gray-400"/>
                     </div>
 
 
@@ -166,7 +252,10 @@ const downloadPDF = async () => {
                             className="outline-none border-1 p-1 rounded-lg border-gray-400"/></p>
                             
                         </div>
-                            <p className="flex flex-col">Additional Information (Optional)<input value={schoolDetail[eduItem-1]}
+                            <p className="flex flex-col">Additional Information  (Optional) 
+                                 <p onClick={()=>educationDetailGenerate(eduItem-1)} className="text-[15px] bg-gray-400 hover:bg-cyan-400 p-1 w-fit cursor-pointer rounded-xl">Create with AI</p> 
+                                <input value={schoolDetail[eduItem-1]}
+                                placeholder="Give some educational detal to generate"
                              onChange={(e)=>{ const updatedItems = [...schoolDetail];
                                  updatedItems[eduItem-1] = e.target.value;setSchoolDetail(updatedItems)}} 
                              className="outline-none border-1 p-1 rounded-lg border-gray-400"/></p>
@@ -226,7 +315,10 @@ const downloadPDF = async () => {
                                  updatedItems[expItem-1] = e.target.value;setJobDate(updatedItems)}}
                          className="outline-none border-1 p-1 rounded-lg border-gray-400"/></p>
                          </div>
-                        <p className="flex flex-col">Description <input value={jobDesc[expItem-1]} 
+                        <p className="flex flex-col">Description  
+                            <p onClick={()=>workDetailGenerate(expItem-1)} className="text-[15px] bg-gray-400 hover:bg-cyan-400 p-1 w-fit cursor-pointer rounded-xl">Create with AI</p>
+                            <input value={jobDesc[expItem-1]} 
+                            placeholder="Give some detail aboute this work"
                         onChange={(e)=>{ const updatedItems = [...jobDesc];
                                  updatedItems[expItem-1] = e.target.value;setJobDesc(updatedItems)}}
                          className="outline-none border-1 p-1 rounded-lg border-gray-400"/> </p>
@@ -277,7 +369,10 @@ const downloadPDF = async () => {
                     className="outline-none border-1 p-1 rounded-lg border-gray-400"/></p>
                     
                     </div>
-                    <p className="flex flex-col">Description<input value={projectDesc[proItem-1]} 
+                    <p className="flex flex-col">Description  
+                         <p onClick={()=>projectDetailGenerate(proItem-1)} className="text-[15px] bg-gray-400 hover:bg-cyan-400 p-1 w-fit cursor-pointer rounded-xl">Create with AI</p>
+                        <input value={projectDesc[proItem-1]} 
+                        placeholder="Give some details aboute your project"
                     onChange={(e)=>{ const updatedItems = [...projectDesc];
                                  updatedItems[proItem-1] = e.target.value;setProjectDesc(updatedItems)}} 
                     className="outline-none border-1 p-1 rounded-lg border-gray-400"/></p>

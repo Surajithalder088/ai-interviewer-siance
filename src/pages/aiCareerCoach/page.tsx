@@ -25,7 +25,7 @@ const ChatMessage: React.FC<ChatMessageProps> = ({role, message }) => {
 
 
   return (
-   <div className={`w-full flex ${!isUser ? "justify-start" : "justify-end"} mb-2`}>
+   <div className={`w-full  min-w-[60px] flex ${!isUser ? "justify-start" : "justify-end"} mb-2`}>
       <div
         className={`max-w-[70%] p-4 text-sm rounded-2xl shadow-md leading-relaxed ${
           isUser
@@ -54,10 +54,13 @@ const [showNavbar, setShowNavbar] = useState(true)
       content: systemInstructionCareerCoach
         }
        ])
+       const [responding,setResponding]=useState(false)
 
 
   const sendMessage =async()=>{
     if(!userInput.trim()) return
+
+    setResponding(true)
 
     setChatMode(true)
     console.log(userInput);
@@ -79,6 +82,7 @@ const [showNavbar, setShowNavbar] = useState(true)
       
 
       const aiReply=  response.data.reply.content
+      setResponding(false)
       setMessages((prev) => [
         ...prev,
         { sender: "ai", role: "assistant", content: aiReply },
@@ -89,6 +93,7 @@ const [showNavbar, setShowNavbar] = useState(true)
       
 
     }catch(error){
+      setResponding(false)
       console.log(error);
       
     }
@@ -154,7 +159,11 @@ const [showNavbar, setShowNavbar] = useState(true)
                 <ChatMessage key={idx} role={msg.role as "user" | "assistant"} message={msg.content}/>
                
             ))
+            
           }
+          {
+              responding===true?<ChatMessage  role={"assistant"} message={"Thinking..."}/>:""
+            }
            
           </div>
           
