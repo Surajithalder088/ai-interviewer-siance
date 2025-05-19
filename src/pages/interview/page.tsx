@@ -17,7 +17,7 @@ interface InterviewState {
 }
 
 
-const API_KEY=import.meta.env.VITE_GEMINI_API_KEY;
+
 
 type ChatMessageProps = {
    role: "user" | "assistant";
