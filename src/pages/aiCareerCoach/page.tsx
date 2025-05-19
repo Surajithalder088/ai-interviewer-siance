@@ -71,19 +71,14 @@ const [showNavbar, setShowNavbar] = useState(true)
 
 
     try{
-      const response=await axios.post('https://openrouter.ai/api/v1/chat/completions',{
-        model:'openai/gpt-3.5-turbo',
+      const response=await axios.post('https://ai-interview-copilote-api.onrender.com/chat',{
+       
         messages: updatedMessages.map(({ role, content }) => ({ role, content })),
-      },{
-        headers:{
-        Authorization: `Bearer ${API_KEY}`,
-        "Content-Type": "application/json",
-        "HTTP-Referer": "http://localhost:5173", // OR your real deployed domain
-        "X-Title": "Career Coach Chat",
-        }
       })
+      console.log(response.data);
+      
 
-      const aiReply= await response.data.choices[0].message.content||"No response"
+      const aiReply=  response.data.reply.content
       setMessages((prev) => [
         ...prev,
         { sender: "ai", role: "assistant", content: aiReply },

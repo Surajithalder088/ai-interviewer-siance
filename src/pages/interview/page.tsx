@@ -72,6 +72,7 @@ const baseText= interview.company===""?`My name is Surajit Halder,the job role i
 
 
   const videoRef = useRef<HTMLVideoElement | null>(null);
+  const scrollRef = useRef<HTMLDivElement | null>(null);
 const [video,setVideo]=useState(false)
 const[speaker,setSpeaker]=useState(true)
  const [isPlaying, setIsPlaying] = useState(false);
@@ -126,7 +127,7 @@ const[speaker,setSpeaker]=useState(true)
       console.log("✅ Speech complete");
       return;
     }
-
+    setIsPlaying(true)
     const utterance = new SpeechSynthesisUtterance(chunks[currentIndex]);
     utterance.rate = options?.rate ?? 1;
     utterance.pitch = options?.pitch ?? 1;
@@ -157,6 +158,9 @@ const[speaker,setSpeaker]=useState(true)
   }
 }
 
+
+
+// this funcion send user input and send to ai pi
    const sendMessage =async()=>{
     if(!userInput.trim()) return
 
@@ -172,28 +176,25 @@ const[speaker,setSpeaker]=useState(true)
 
 
     try{
-      const response=await axios.post('https://openrouter.ai/api/v1/chat/completions',{
-        model:'openai/gpt-3.5-turbo',
+      const response=await axios.post('https://ai-interview-copilote-api.onrender.com/chat',{
+       
         messages: updatedMessages.map(({ role, content }) => ({ role, content })),
-      },{
-        headers:{
-        Authorization: `Bearer ${API_KEY}`,
-        "Content-Type": "application/json",
-        "HTTP-Referer": "http://localhost:5173", // OR your real deployed domain
-        "X-Title": "Career Coach Chat",
-        }
       })
 
-      const aiReply= await response.data.choices[0].message.content||"No response"
+      const aiReply= response.data.reply.content
+      console.log(response);
+      
       setMessages((prev) => [
         ...prev,
         { sender: "ai", role: "assistant", content: aiReply },
       ]);
 
-      if(response.status===200){
-        setIsPlaying(true)
+      if(response.status===201){
+        
+         handleScrollToBottom()
 
        speakText(aiReply,{
+        
   onEnd: () => {
     setIsPlaying(false)
     console.log("🎉 AI finished speaking.");
@@ -241,6 +242,12 @@ const[speaker,setSpeaker]=useState(true)
      video.currentTime = 30; // optional: reset to beginning
     }
   }, [isPlaying]);
+
+  const handleScrollToBottom = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+    }
+  };
 
 
   return (
@@ -295,7 +302,7 @@ const[speaker,setSpeaker]=useState(true)
 
             </div>
 
-            <div className="flex   flex-col gap-3 w-[60%] overflow-y-scroll max-h-[380px] text-white font-semibold">
+            <div  ref={scrollRef} className="flex   flex-col gap-3 w-[60%] overflow-y-scroll max-h-[380px] text-white font-semibold">
                 {
             messages.filter((msg) => msg.role !== "system").map((msg,idx)=>(
                
@@ -323,7 +330,11 @@ const[speaker,setSpeaker]=useState(true)
                <div className="w-full bg-gray-500 rounded-lg flex items-center justify-between gap-2 border-1  p-3">
           <input  type="text" value={userInput} onChange={e=>setUserInput(e.target.value)} className="w-[90%] outline-none"/>
          
-            <img  onClick={sendMessage} className="w-[40px]" src="/send-call.svg"/>
+            <img  onClick={()=>{
+              sendMessage()
+                handleScrollToBottom()
+
+            }} className="w-[40px]" src="/send-call.svg"/>
           
         </div>
         }
