@@ -27,7 +27,9 @@ const user:UserState = useSelector((state: RootState) => state.user);
    <div className={`[@media(max-width:1100px)]:hidden max-w-screen   flex justify-center items-center gap-4 h-[80px] bg-transparent backdrop-blur-md top-0 bg-gradient-to-r from-gray-800 via-black to-gray-500 `}>
      <Link to='/'>
    <div className="p-6  w-[180px] h-[80px] flex items-center justify-center">
-                  <img className="w-9" src="/new_logo_siance.png"/>  <img className="h-7" src="/siaṇce.png"/>
+                  <img className="w-9" src="/new_logo_siance.png"/> 
+                   <img className="h-7" src="/siaṇce.png"/>
+                              <video  className="w-[30px] rounded-full bg-black mx-3" src="/videos/artificial-intelligence.mp4" autoPlay loop muted playsInline ></video>
                 </div></Link>
 
     <div className="flex gap-4 text-white font-bold text-[12px] items-center justify-around  w-[60%]">
@@ -172,7 +174,7 @@ const user:UserState = useSelector((state: RootState) => state.user);
     className="flex gap-4 bg-gray-300 rounded-full p-1 border-1">
       <img onClick={()=>setUserOpen(!userOpen)} src="/user-pro.svg" className="w-[20px]"/>
       { userOpen===true?<div 
-       className={ `absolute mt-[60px] mr-[40px]  border-gray-500 bg-white shadow-lg rounded-md text-black p-5 `}>
+       className={ `absolute mt-[60px] ml-[-80px]  border-gray-500 bg-white shadow-lg rounded-md text-black p-5 `}>
            <div className=" flex justify-between items-center font-medium  text-gray-500  text-[15px] p-2 cursor-pointer">
           
              Hey User123
@@ -207,6 +209,7 @@ const user:UserState = useSelector((state: RootState) => state.user);
    <div className="p-6 flex items-center  my-3 w-[160px] h-[80px]">
                     <img className="h-6" src="/new_logo_siance.png"/>
                     <img className="h-5" src="/siaṇce.png"/>
+                     <video  className="w-[30px] rounded-full bg-black mx-3" src="/videos/artificial-intelligence.mp4" autoPlay loop muted playsInline ></video>
                 </div>
       </Link>
         <div className="flex gap-4 mr-6 items-center">

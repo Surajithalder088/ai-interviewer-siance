@@ -22,6 +22,7 @@ interface InterviewState {
 type ChatMessageProps = {
    role: "user" | "assistant";
   message: string;
+  time:number;
 };
 
 type SpeakOptions = {
@@ -32,7 +33,9 @@ type SpeakOptions = {
 };
 
 
-const ChatMessage: React.FC<ChatMessageProps> = ({role, message }) => {
+const ChatMessage: React.FC<ChatMessageProps> = ({role, message,time }) => {
+
+  let timeStamp=`${Math.floor((time % 3600) / 60)}:${time % 60}`
   // Convert **bold** to <strong> and add spacing
 
    const isUser = role === "user";
@@ -44,6 +47,9 @@ const ChatMessage: React.FC<ChatMessageProps> = ({role, message }) => {
 
   return (
    <div className={`w-full flex ${!isUser ? "justify-start" : "justify-end"} mb-2`}>
+    {
+     time!==0 && !isUser&& <p className="bg-gray-500 p-1 rounded-lg h-fit">{timeStamp.toString()}</p>
+    }
       <div
         className={`max-w-[70%] p-4 text-sm rounded-2xl shadow-md leading-relaxed ${
           isUser
@@ -81,13 +87,19 @@ const[speaker,setSpeaker]=useState(true)
          {
            sender: "system",
        role: "system",
-       content: systemInstructionInterviewer
+       content: systemInstructionInterviewer,
+       times:0
          }
         ])
 
    const navigate=useNavigate()
 
    const[started,setStarted]=useState(false)
+
+   const[responding,setResponding]=useState(false) // to manage ai response
+ 
+
+   const[voiceInput,setVoiceInput]=useState(false)
 
 
 
@@ -164,12 +176,13 @@ const[speaker,setSpeaker]=useState(true)
    const sendMessage =async()=>{
     if(!userInput.trim()) return
 
-    
+    setResponding(true)
     console.log(userInput);
+    setVoiceInput(false)
 
     const updatedMessages = [
       ...messages,
-      { sender: "user", role: "user", content: userInput },
+      { sender: "user", role: "user", content: userInput,times:time },
     ];
     setMessages(updatedMessages)
     setUserInput("")
@@ -186,12 +199,13 @@ const[speaker,setSpeaker]=useState(true)
       
       setMessages((prev) => [
         ...prev,
-        { sender: "ai", role: "assistant", content: aiReply },
+        { sender: "ai", role: "assistant", content: aiReply,times:time },
       ]);
 
       if(response.status===201){
-        
+        setResponding(false)
          handleScrollToBottom()
+         
 
        speakText(aiReply,{
         
@@ -208,6 +222,7 @@ const[speaker,setSpeaker]=useState(true)
       
 
     }catch(error){
+      setResponding(false)
       console.log(error);
       
     }
@@ -250,6 +265,29 @@ const[speaker,setSpeaker]=useState(true)
   };
 
 
+
+  // these are for timer handling
+  
+    const [isRunning, setIsRunning] = useState(false);
+    const [time, setTime] = useState(0); // in seconds
+    const [savedTime, setSavedTime] = useState<number | null>(null);
+    const intervalRef = useRef<number | null>(null);
+  
+      useEffect(() => {
+      if (isRunning) {
+        intervalRef.current = setInterval(() => {
+          setTime(prevTime => prevTime + 1);
+        }, 1000); // update every second
+      } else if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+  
+      return () => {
+        if (intervalRef.current) clearInterval(intervalRef.current);
+      };
+    }, [isRunning]);
+
+
   return (
     <>
     <div className={`w-[100vw] max-h-[100vh]  relative  px-[100px] py-[70px] gap-4  h-full min-h-[100vh] bg-gradient-to-r from-black via-gray-600 to-black`}>
@@ -258,7 +296,7 @@ const[speaker,setSpeaker]=useState(true)
 
           <div className="flex gap-2 items-center"> 
              <p className="text-2xl text-white">Mock Interview</p>
-          <p className="text-md ">03:40</p>
+          <p className="text-md ">{Math.floor((time % 3600) / 60)}:{time % 60}</p>
           </div>
 
           <div className="flex gap-3">
@@ -282,12 +320,17 @@ const[speaker,setSpeaker]=useState(true)
               <img className="w-[20px] h-[20px]" src={speaker?"/speaker.png":"/speaker-off.svg"}/>   </div>
             
             <div className="bg-gradient-to-l from-pink-500 to-purple-500 p-1 rounded-full h-fit cursor-pointer" >
-              <img className="w-[20px] h-[20px]" src="/setting-call.svg"/></div>
+              <img className="w-[20px] h-[20px]" src="/setting-call.svg"/>
+              </div>
 
              <div 
              onClick={
               ()=>{
+                 setIsRunning(false);
+                 setSavedTime(time);
               navigate('/mock-interview')
+              console.log(`total time taken ->${Math.floor((time % 3600) / 60)}:${time % 60}`,savedTime);
+              
               }
             }
               className="bg-gradient-to-l from-pink-500 to-purple-500 p-1 rounded-full h-fit cursor-pointer" ><img className="w-[20px] h-[20px]" src="/power-off.png"/></div>
@@ -307,9 +350,12 @@ const[speaker,setSpeaker]=useState(true)
             messages.filter((msg) => msg.role !== "system").map((msg,idx)=>(
                
                  
-                <ChatMessage key={idx} role={msg.role as "user" | "assistant"} message={msg.content}/>
+                <ChatMessage key={idx} role={msg.role as "user" | "assistant"} message={msg.content} time={msg.times}/>
                
             ))
+          }
+          {
+            responding? <ChatMessage  role= "assistant" message="Okay....Let me think..." time={0}/>:""
           }
                
             </div>
@@ -321,20 +367,28 @@ const[speaker,setSpeaker]=useState(true)
 
               <div
               onClick={()=>{
+                setTime(0); // reset the timer each time it starts
                 setStarted(true)
                 sendMessage()
+                
+               setIsRunning(true);
               }}
               className="bg-gray-300 text-black p-3 rounded-lg"
               >Start Interview</div>
             </div>:
-               <div className="w-full bg-gray-500 rounded-lg flex items-center justify-between gap-2 border-1  p-3">
-          <input  type="text" value={userInput} onChange={e=>setUserInput(e.target.value)} className="w-[90%] outline-none"/>
-         
-            <img  onClick={()=>{
+               <div className="w-full bg-gray-800 rounded-lg flex items-center justify-between gap-2 border-1  p-3">
+          <input placeholder="Write your answer here ... or turn on mike to talk"  type="text" value={userInput} onChange={e=>setUserInput(e.target.value)} className="w-[90%] outline-none text-white bg-gray-500 p-2 rounded-lg"/>
+          
+          {
+            voiceInput===false? <img onClick={()=>setVoiceInput(true)}  className="w-[35px] cursor-pointer p-1 border-3 rounded-md bg-white" src="/speaker.png"/>
+            :
+            <video onClick={()=>setVoiceInput(false)} className="w-[40px] rounded-2xl" src="/videos/microphone.mp4" autoPlay loop muted playsInline ></video>
+          }
+            <video onClick={()=>{
               sendMessage()
                 handleScrollToBottom()
 
-            }} className="w-[40px]" src="/send-call.svg"/>
+            }} className="w-[40px] bg-white rounded-xl border-1 " src="/videos/up-arrow.mp4" autoPlay loop muted playsInline ></video>
           
         </div>
         }

@@ -105,6 +105,9 @@ const MockInterview = () => {
     }, [sideBarOpen]);
 
 
+    
+
+
   return (
     <>{
 

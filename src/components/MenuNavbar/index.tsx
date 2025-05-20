@@ -1,7 +1,7 @@
 
 
 import { motion } from "motion/react"
-import { useState } from "react"
+import {  useState } from "react"
 import { useSelector } from "react-redux"
 import { Link, useNavigate } from "react-router-dom"
 import { RootState } from "../../store/store"
@@ -23,17 +23,23 @@ const navigate=useNavigate()
 const [open,setOpen]=useState(false)
 const[userOpen,setUserOpen]=useState(false)
 
+
 const user:UserState = useSelector((state: RootState) => state.user);
+
+
+
 
   return (
    <>
-   <div className={`[@media(max-width:1100px)]:hidden  ${open?"max-w-fit rounded-r-md ":"max-w-screen"}   flex justify-center items-center gap-4 h-[80px] bg-transparent backdrop-blur-md top-0 ${open?"bg-white":"bg-gradient-to-r from-gray-800 via-black to-gray-500 "}  `}>
+   <div className={`[@media(max-width:1100px)]:hidden  ${open?"max-w-fit rounded-r-md ":"max-w-screen"} px-5   flex justify-center items-center gap-3 h-[80px] bg-transparent backdrop-blur-md top-0 ${open?"bg-white":"bg-gradient-to-r from-gray-800 via-black to-gray-500 "}  `}>
    <Link to='/'>
    <div className="p-6  w-[180px] h-[80px] flex items-center justify-center">
-                  <img className="w-9" src="/new_logo_siance.png"/>  <img className="h-7" src="/siaṇce.png"/>
+                  <img className="w-9" src="/new_logo_siance.png"/> 
+                   <img className="h-7" src="/siaṇce.png"/>
+                    <video  className="w-[30px] rounded-full bg-black mx-3" src="/videos/artificial-intelligence.mp4" autoPlay loop muted playsInline ></video>
                 </div></Link>
 
-   <div className={`flex w-[80%] ${open?"hidden":""}`}>
+   <div className={`flex w-[70%] ${open?"hidden":""}`}>
     <div className="flex gap-4 text-white font-bold text-[12px] items-center justify-around  w-[86%]">
 
        <Link className="no-underline !text-white !font-bold" to='/interview-copilot'
@@ -146,8 +152,8 @@ const user:UserState = useSelector((state: RootState) => state.user);
 
     <div 
     onClick={()=>setOpen(!open)}
-    className={` p-2    rounded cursor-pointer ${open?"mr-2":"mr-3.5 pr-[100px]"}`}>
-        <img src={open?"/right-arrow.png":`/back.png`} className="bg-white rounded-full w-[40px]"/>
+    className={` p-1    rounded cursor-pointer ${open?"mr-2":"mr-3.5 pr-[100px]"}`}>
+        <img src={open?"/right-arrow.png":`/back.png`} className="bg-white rounded-full w-[30px]"/>
       
         
     </div>
@@ -176,6 +182,7 @@ const user:UserState = useSelector((state: RootState) => state.user);
    <div className="p-6 flex items-center my-3 w-[160px] h-[80px]">
                     <img className="h-6" src="/new_logo_siance.png"/>
                     <img className="h-5" src="/siaṇce.png"/>
+                     <video  className="w-[30px] rounded-full bg-black mx-3" src="/videos/artificial-intelligence.mp4" autoPlay loop muted playsInline ></video>
                 </div>
       </Link>
         <div className="flex gap-4 mr-6 items-center">
