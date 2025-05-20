@@ -10,6 +10,15 @@ import { setInterview } from "../../store/interviewSlice";
 
 
 
+const data = [
+  { name: "Surajit", email: "surajit@example.com", role: "Developer", location: "Kolkata" },
+  { name: "Alex", email: "alex@example.com", role: "Designer", location: "Bangalore" },
+  { name: "Rina", email: "rina@example.com", role: "Manager", location: "Hyderabad" },
+  { name: "Rina", email: "rina@example.com", role: "Manager", location: "Hyderabad" },
+  { name: "Rina", email: "rina@example.com", role: "Manager", location: "Hyderabad" },
+  { name: "Rina", email: "rina@example.com", role: "Manager", location: "Hyderabad" },
+];
+
 interface UserState {
   name: string;
   email: string;
@@ -102,12 +111,12 @@ const MockInterview = () => {
       openTab===false?
      (<div className={`w-[100vw]  relative  h-full min-h-[100vh] bg-gradient-to-r from-black via-gray-600 to-black`}>
       <div
-    className={`flxed ${sideBarOpen===true?"hidden":""} top-0 w-full z-50 transition-transform  duration-300 ${showNavbar===true?"translate-y-0":"-translate-y-full"}`}
+    className={`fixed ${sideBarOpen===true?"hidden":""} top-0 w-full z-50 transition-transform  duration-300 ${showNavbar===true?"translate-y-0":"-translate-y-full"}`}
     >
      <Navbar/>
      </div>
       <div
-    className={`flxed ${sideBarOpen===false?"hidden":""} top-0 w-full z-50 transition-transform  duration-300 ${showNavbar===true?"translate-y-0":"-translate-y-full"}`}
+    className={`fixed ${sideBarOpen===false?"hidden":""} top-0 w-full z-50 transition-transform  duration-300 ${showNavbar===true?"translate-y-0":"-translate-y-full"}`}
     >
      <MenuNavbar/>
      </div>
@@ -115,7 +124,7 @@ const MockInterview = () => {
    
     <div className={ `flex flex-col items-center ` }>
 
-      <div className={`${sideBarOpen===false?"hidden":"flex flex-col gap-6"}  h-fit max-h-[100vh] py-[40px] w-[80%]`}>
+      <div className={`${sideBarOpen===false?"hidden":"flex flex-col gap-6"}  h-fit max-h-[100vh] py-[80px] w-[80%]`}>
        <p className="text-white text-4xl font-bold w-full">Mock Interview</p>
        <p className="text-gray-200 font-semibold text-md ">Elevate your interview skills with AI Mock
          Interview that offers realistic practice sessions, instant feedback,
@@ -183,7 +192,7 @@ const MockInterview = () => {
           </div>}
 
 
-          <div className="flex flex-col hover:bg-gray-300 w-[250px] hover:text-black cursor-pointer items-center py-3 px-6 border-1 border-gray-400 rounded-md bg-gray-500 text-white">
+          <div onClick={()=>navigate('/question-bank')} className="flex flex-col hover:bg-gray-300 w-[250px] hover:text-black cursor-pointer items-center py-3 px-6 border-1 border-gray-400 rounded-md bg-gray-500 text-white">
             <img src="/ai-practice.png" className="w-[50px]"/>
             <p className="text-[15px] font-bold">Start Practicing Question</p>
           </div>
@@ -191,9 +200,28 @@ const MockInterview = () => {
 
         </div>
 
-        <div className="flex flex-col bg-gray-400 rounded-lg w-full min-h-[200px] mt-[50px]">
+        <div className="flex flex-col bg-gray-400 rounded-lg [@media(max-width:1100px)]:max-h-[200px] [@media(max-width:1100px)]:max-w-[270px] w-full min-h-[140px] mt-[50px] overflow-x-scroll">
          
-         <table>
+          <table className="w-full  ">
+           <thead>
+          <tr className="bg-gray-200 text-left">
+            <th className="px-4 py-2 border">Interview</th>
+            <th className="px-4 py-2 border">Status</th>
+            <th className="px-4 py-2 border">Appointment</th>
+            <th className="px-4 py-2 border">Action</th>
+          </tr>
+        </thead>
+                <tbody>
+          {data.map((user, index) => (
+            <tr key={index} className="hover:bg-gray-100">
+              <td className="px-4 py-2 border">{user.name}</td>
+              <td className="px-4 py-2 border">{user.email}</td>
+              <td className="px-4 py-2 border">{user.role}</td>
+              <td className="px-4 py-2 border">{user.location}</td>
+            </tr>
+          ))}
+        </tbody>
+
           
          </table>
         </div>

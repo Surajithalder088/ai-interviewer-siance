@@ -79,12 +79,12 @@ const InterviewCopilot = () => {
   return (
     <div className={`w-[100vw]  relative  h-full min-h-[100vh] bg-gradient-to-r from-black via-gray-600 to-black`}>
       <div
-    className={`flxed ${sideBarOpen===true?"hidden":""} top-0 w-full z-50 transition-transform  duration-300 ${showNavbar===true?"translate-y-0":"-translate-y-full"}`}
+    className={`fixed ${sideBarOpen===true?"hidden":""} top-0 w-full z-50 transition-transform  duration-300 ${showNavbar===true?"translate-y-0":"-translate-y-full"}`}
     >
      <Navbar/>
      </div>
       <div
-    className={`flxed ${sideBarOpen===false?"hidden":""} top-0 w-full z-50 transition-transform  duration-300 ${showNavbar===true?"translate-y-0":"-translate-y-full"}`}
+    className={`fixed ${sideBarOpen===false?"hidden":""} top-0 w-full z-50 transition-transform  duration-300 ${showNavbar===true?"translate-y-0":"-translate-y-full"}`}
     >
      <MenuNavbar/>
      </div>
@@ -92,16 +92,16 @@ const InterviewCopilot = () => {
    
     <div className={ `flex flex-col items-center ` }>
 
-      <div className={`${sideBarOpen===false?"hidden":"flex flex-col gap-6"}  h-fit max-h-[100vh] py-[40px] w-[80%]`}>
+      <div className={`${sideBarOpen===false?"hidden":"flex flex-col gap-6"}  h-fit max-h-[100vh] py-[80px] w-[80%]`}>
        <p className="text-white text-4xl font-bold w-full">Live Interview</p>
        <p className="text-gray-200 font-semibold text-md ">Interview Copilot is your real-time AI partner that offers on-the-fly, personalized interview support.
          It transcribes each question, analyzes job descriptions and company details, and provides dynamic guidance tailored to your background. 
          With coverage across 100+ industries, multilingual support, and seamless integration into popular meeting platforms, 
         you’ll confidently tackle any live interview question that comes your way.</p>
 
-       <div className="flex flex-col items-center justify-center">
+       <div className="flex flex-col items-center  justify-center">
 
-        <div className="flex items-center justify-around gap-[50px]">
+        <div className="flex [@media(max-width:1100px)]:flex-col items-center justify-around gap-[50px]">
           <div 
           onClick={()=>{
             navigate(`/general-interview/${654}`)
@@ -110,24 +110,24 @@ const InterviewCopilot = () => {
             <img src="/laptop.png" className="w-[50px]"/>
             <p className="text-[15px] font-bold">General Interview</p>
           </div>
-          <div className="flex flex-col hover:bg-gray-300 w-[250px] hover:text-black cursor-pointer items-center py-3 px-6 border-1 border-gray-400 rounded-md bg-gray-500 text-white">
+          <div className="flex flex-col cursor-not-allowed hover:bg-gray-300 w-[250px] hover:text-black  items-center py-3 px-6 border-1 border-gray-400 rounded-md bg-gray-500 text-white">
             <img src="/coding-interview.png" className="w-[50px]"/>
             <p className="text-[15px] font-bold">Coding Copilote Interview</p>
           </div>
-          <div className="flex flex-col hover:bg-gray-300 w-[250px] hover:text-black cursor-pointer items-center py-3 px-6 border-1 border-gray-400 rounded-md bg-gray-500 text-white">
+          <div className="flex flex-col hover:bg-gray-300 w-[250px] hover:text-black cursor-not-allowed items-center py-3 px-6 border-1 border-gray-400 rounded-md bg-gray-500 text-white">
             <img src="/hireview.png" className="w-[50px]"/>
             <p className="text-[15px] font-bold">HireVue Interview</p>
           </div>
-          <div className="flex flex-col hover:bg-gray-300 w-[250px] hover:text-black cursor-pointer items-center py-3 px-6 border-1 border-gray-400 rounded-md bg-gray-500 text-white">
+          <div className="flex flex-col hover:bg-gray-300 w-[250px] hover:text-black cursor-not-allowed items-center py-3 px-6 border-1 border-gray-400 rounded-md bg-gray-500 text-white">
             <img src="/phone-interview.png" className="w-[50px]"/>
             <p className="text-[15px] font-bold">Phone Intervew</p>
           </div>
 
         </div>
 
-        <div className="flex flex-col bg-gray-400 rounded-lg w-full min-h-[200px] mt-[50px]">
+         <div className="flex flex-col bg-gray-400 rounded-lg [@media(max-width:1100px)]:max-h-[200px] [@media(max-width:1100px)]:max-w-[270px] w-full min-h-[140px] mt-[50px] overflow-x-scroll">
          
-         <table>
+          <table className="w-full  ">
            <thead>
           <tr className="bg-gray-200 text-left">
             <th className="px-4 py-2 border">Interview</th>
@@ -151,10 +151,11 @@ const InterviewCopilot = () => {
          </table>
         </div>
 
+
        </div>
       </div>
      
-      <div className="flex flex-col items-center justify-center h-screen gap-4 [@media(max-width:1100px)]:w-[100%]">
+      <div className="flex flex-col items-center justify-center h-screen [@media(max-width:1100px)]:mt-[300px]  gap-4 [@media(max-width:1100px)]:w-[100%]">
         <div className="flex flex-col gap-3 items-center w-[60%]">
           <p className="text-[45px] text-center text-white [@media(max-width:1100px)]:text-[28px]">Interview Copilot™: Your Ultimate AI Interview Assistant</p>
           <p className="text-[25px] text-center text-gray-400  [@media(max-width:1100px)]:text-[18px]">Get AI-powered responses that keep you calm, cool, and collected. Even when the pressure's on.</p>

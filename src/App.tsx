@@ -35,11 +35,11 @@ function App() {
    <div className=' relative w-screen  h-full min-h-[100vh] bg-gradient-to-r from-black via-gray-600 to-black'>
    
     <div
-    className={`flxed top-0 w-full z-50 transition-transform duration-300 ${showNavbar?"translate-y-0":"-translate-y-full"}`}
+    className={`fixed top-0 w-full z-50 transition-transform duration-300 ${showNavbar?"translate-y-0":"-translate-y-full"}`}
     >
       <Navbar/>
     </div>
-    <div className='flex flex-col  items-center '>
+    <div className='flex flex-col mt-[80px] items-center '>
       <FirstSection/>
       <SecondSection/>
       <ThirdSection/>

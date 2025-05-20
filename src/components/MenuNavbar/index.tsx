@@ -157,17 +157,18 @@ const[userOpen,setUserOpen]=useState(false)
 
 {/*  below is for mobnile screen*/ }
 
-   <div className={`hidden [@media(max-width:1100px)]:flex items-center ${navOpen?"bg-white":"bg-transparent backdrop-blur-2xl"}  justify-between`}>
+   <div className={`hidden [@media(max-width:1100px)]:flex items-center ${navOpen?"bg-white":"bg-transparent backdrop-blur-3xl"}  justify-between`}>
 
    <Link to='/'>
-   <div className="p-6 my-3 w-[160px] h-[80px]">
-                    <img src="/full-logo.1087db35.svg"/>
+   <div className="p-6 flex items-center my-3 w-[160px] h-[80px]">
+                    <img className="h-6" src="/new_logo_siance.png"/>
+                    <img className="h-5" src="/siaṇce.png"/>
                 </div>
       </Link>
         <div className="flex gap-4 mr-6 items-center">
           <div className="bg-orange-500 rounded-md px-4 py-2 text-white">Sign Up</div>
           <div onClick={() => setNavOpen(!navOpen)} 
-          className="w-fit h-fit ">
+          className="w-fit h-fit bg-white p-1 rounded-lg">
            { !navOpen?<img src="/navbar-menu.svg"/>:
             <img src="/navbar-close.svg"/>}
           </div>
@@ -215,7 +216,8 @@ const[userOpen,setUserOpen]=useState(false)
   </div>}
   </div>
  <p  
- className="flex hover:bg-orange-100 hover:text-orange-400 p-2 rounded-md cursor-pointer items-center">AI Mock interview 
+ className="flex hover:bg-orange-100 hover:text-orange-400 p-2 rounded-md cursor-pointer items-center">
+  <Link className="no-underline !text-black !font-bold" to='/mock-interview'>AI Mock interview </Link>
 
  </p>
 

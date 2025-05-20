@@ -1,14 +1,26 @@
 import { motion } from "motion/react"
 import { useState } from "react"
+import { useSelector } from "react-redux"
 import { Link, useNavigate } from "react-router-dom"
+import { RootState } from "../../store/store"
 
+
+interface UserState {
+  name: string;
+  email: string;
+  token: string;
+  // Add any other fields as needed
+}
 
 
 const Navbar = () => {
   
 const [isHover,setIsHover] = useState(0)
 const [navOpen,setNavOpen] = useState(false)
+const[userOpen,setUserOpen]=useState(false)
 const navigate=useNavigate()
+
+const user:UserState = useSelector((state: RootState) => state.user);
 
   return (
    <>
@@ -148,42 +160,59 @@ const navigate=useNavigate()
         </div>
     </div>
 
-    <div className="flex gap-4">
+   {user.name==="" ?<div className="flex gap-4">
         <div 
         onClick={()=>navigate('/sign-in')}
         className="hover:!bg-gray-200 hover:text-black text-white  !bg-transparent !font-bold !text-[15px] cursor-pointer rounded-xl flex items-center justify-center p-2 w-[100px]">Sign In</div>
         <div onClick={()=>navigate('/sign-in')} className="hover:!bg-gray-200 hover:text-black !bg-gray-400 text-white !font-bold cursor-pointer rounded-xl flex items-center justify-center p-2  !text-[15px] w-[80px]">Sign Up</div>
     </div>
+    :
+    <div
+    
+    className="flex gap-4 bg-gray-300 rounded-full p-1 border-1">
+      <img onClick={()=>setUserOpen(!userOpen)} src="/user-pro.svg" className="w-[20px]"/>
+      { userOpen===true?<div 
+       className={ `absolute mt-[60px] mr-[40px]  border-gray-500 bg-white shadow-lg rounded-md text-black p-5 `}>
+           <div className=" flex justify-between items-center font-medium  text-gray-500  text-[15px] p-2 cursor-pointer">
+          
+             Hey User123
+
+            <p onClick={()=>setUserOpen(false)
+            }
+            className="hover:text-red-500 hover:bg-gray-500 px-2 py-1 rounded-full"
+            >X</p>
+
+           </div>
+           <p>user123@gmail.com</p>
+           <p> User123 Roy</p>
+           <p className="bg-gray-200 p-2 rounded-lg">Account Settings</p>
+
+           <p className="bg-white px-2 rounded-lg"> Logout</p>
+             
+          
+         </div>:""}
+
+        </div>
+        }
    </div>
-   {!navOpen && isHover===0 &&<div className="absolute left-0 bottom-0 w-full mt-0 h-0.5 overflow-hidden">
-        <motion.div
-          className="h-full w-1/2 bg-gradient-to-r from-gray-800 via-gray-400 to-white"
-          initial={{ x: "-50%" }}
-          animate={{ x: "100%" }}
-          transition={{
-            repeat: Infinity,
-            repeatType: "loop",
-            duration: 3,
-            ease: "easeInOut",
-          }}
-        />
-      </div>}
+  
 
 
 
 {/*  below is for mobnile screen*/ }
 
-   <div className={`hidden [@media(max-width:1100px)]:flex items-center ${navOpen?"bg-white":"bg-transparent backdrop-blur-2xl"}  justify-between`}>
+   <div className={`hidden [@media(max-width:1100px)]:flex items-center ${navOpen?"bg-white":"bg-transparent backdrop-blur-3xl"}  justify-between`}>
 
    <Link to='/'>
-   <div className="p-6 my-3 w-[160px] h-[80px]">
-                    <img src="/full-logo.1087db35.svg"/>
+   <div className="p-6 flex items-center  my-3 w-[160px] h-[80px]">
+                    <img className="h-6" src="/new_logo_siance.png"/>
+                    <img className="h-5" src="/siaṇce.png"/>
                 </div>
       </Link>
         <div className="flex gap-4 mr-6 items-center">
-          <div className="bg-orange-500 rounded-md px-4 py-2 text-white">Sign Up</div>
+          <div className="bg-orange-500 rounded-md px-4 py-2 text-white text-[15px]">Sign Up</div>
           <div onClick={() => setNavOpen(!navOpen)} 
-          className="w-fit h-fit ">
+          className="w-fit h-fit bg-white p-1 rounded-lg">
            { !navOpen?<img src="/navbar-menu.svg"/>:
             <img src="/navbar-close.svg"/>}
           </div>
@@ -230,8 +259,10 @@ const navigate=useNavigate()
      className="p-2 cursor-pointer hover:text-orange-500">Auto apply</p>
   </div>}
   </div>
+
  <p  
- className="flex hover:bg-orange-100 hover:text-orange-400 p-2 rounded-md cursor-pointer items-center">AI Mock interview 
+ className="flex hover:bg-orange-100 hover:text-orange-400 p-2 rounded-md cursor-pointer items-center">
+  <Link className="no-underline !text-black !font-bold" to='/mock-interview'>AI Mock interview</Link> 
 
  </p>
 
@@ -307,6 +338,19 @@ className={ ` mr-[30px] border-gray-500 bg-white text-black shadow-lg rounded-md
  </div>
 </div>
    </div>
+    {!navOpen && isHover===0 &&<div className="absolute left-0 bottom-0 w-full mt-0 h-0.5 overflow-hidden">
+        <motion.div
+          className="h-full w-1/2 bg-gradient-to-r from-gray-800 via-gray-400 to-white"
+          initial={{ x: "-50%" }}
+          animate={{ x: "100%" }}
+          transition={{
+            repeat: Infinity,
+            repeatType: "loop",
+            duration: 3,
+            ease: "easeInOut",
+          }}
+        />
+      </div>}
    </>
   )
 }

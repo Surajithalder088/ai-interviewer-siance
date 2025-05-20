@@ -52,19 +52,19 @@ const AutoApply = () => {
   return (
     <div  className="w-[100vw]   h-full min-h-[100vh] bg-gradient-to-r from-black via-gray-600 to-black">
        <div
-    className={`flxed ${sideBarOpen===true?"hidden":""} top-0 w-full z-50 transition-transform duration-300 ${showNavbar?"translate-y-0":"-translate-y-full"}`}
+    className={`fixed ${sideBarOpen===true?"hidden":""} top-0 w-full z-50 transition-transform duration-300 ${showNavbar?"translate-y-0":"-translate-y-full"}`}
     >
         <Navbar/>
       </div>
 
       <div
-    className={`flxed ${sideBarOpen===false?"hidden":""} top-0 w-full z-50 transition-transform  duration-300 ${showNavbar===true?"translate-y-0":"-translate-y-full"}`}
+    className={`fixed ${sideBarOpen===false?"hidden":""} top-0 w-full z-50 transition-transform  duration-300 ${showNavbar===true?"translate-y-0":"-translate-y-full"}`}
     >
      <MenuNavbar/>
      </div>
         <div className="flex flex-col items-center gap-[80px]">
 
-        <div className={`${ sideBarOpen===false?"hidden":"flex flex-col"} w-[80%] py-[30px] gap-[20px]`}>
+        <div className={`${ sideBarOpen===false?"hidden":"flex flex-col"} w-[80%] py-[80px] gap-[20px]`}>
           <p className="text-3xl font-bold text-white">Auto Apply</p>
           <p className="text-[15px] text-gray-300">Tired of juggling multiple websites just to apply for jobs? Our one-click application feature streamlines the entire process,
              letting you apply with a single tap. Plus, we’ll recommend the best-fit opportunities based on your skills and expectations, 

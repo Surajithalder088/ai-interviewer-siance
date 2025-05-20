@@ -255,7 +255,7 @@ const downloadPDF = async () => {
                             <p className="flex flex-col">Additional Information  (Optional) 
                                  <p onClick={()=>educationDetailGenerate(eduItem-1)} className="text-[15px] bg-gray-400 hover:bg-cyan-400 p-1 w-fit cursor-pointer rounded-xl">Create with AI</p> 
                                 <input value={schoolDetail[eduItem-1]}
-                                placeholder="Give some educational detal to generate"
+                                placeholder="Give some educational details to generate"
                              onChange={(e)=>{ const updatedItems = [...schoolDetail];
                                  updatedItems[eduItem-1] = e.target.value;setSchoolDetail(updatedItems)}} 
                              className="outline-none border-1 p-1 rounded-lg border-gray-400"/></p>
@@ -745,5 +745,6 @@ const downloadPDF = async () => {
     </div>
   )
 }
+
 
 export default AiResumeEditor

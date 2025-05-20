@@ -48,21 +48,21 @@ const AiResumeBuilder = () => {
     
    <div className="w-[100vw]   h-full min-h-[100vh] bg-gradient-to-r from-black via-gray-600 to-black">
      <div
-    className={`flxed ${sideBarOpen===true?"hidden":""} top-0 w-full z-50 transition-transform duration-300 ${showNavbar?"translate-y-0":"-translate-y-full"}`}
+    className={`fixed ${sideBarOpen===true?"hidden":""} top-0 w-full z-50 transition-transform duration-300 ${showNavbar?"translate-y-0":"-translate-y-full"}`}
     >
         <Navbar/>
         </div>
 
         
         <div
-    className={`flxed ${sideBarOpen===false?"hidden":""} top-0 w-full z-50 transition-transform  duration-300 ${showNavbar===true?"translate-y-0":"-translate-y-full"}`}
+    className={`fixed ${sideBarOpen===false?"hidden":""} top-0 w-full z-50 transition-transform  duration-300 ${showNavbar===true?"translate-y-0":"-translate-y-full"}`}
     >
      <MenuNavbar/>
      </div>
 
         <div className="flex flex-col items-center">
 
-      <div className={`${sideBarOpen===false?"hidden":"flex flex-col gap-6"}  h-fit max-h-[100vh] py-[40px] w-[80%]`}>
+      <div className={`${sideBarOpen===false?"hidden":"flex flex-col gap-6"}  h-fit max-h-[100vh] py-[80px] w-[80%]`}>
        <p className="text-white text-4xl font-bold w-full">Document Center</p>
        <p className="text-gray-200 font-semibold text-md ">Upload your resume, cover letter, or any other job application materials,
          and let our AI turn them into polished, standout documents. From refining structure to highlighting your unique strengths,
