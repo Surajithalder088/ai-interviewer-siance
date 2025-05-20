@@ -39,7 +39,7 @@ function App() {
     >
       <Navbar/>
     </div>
-    <div className='flex flex-col mt-[80px] items-center '>
+    <div className='flex flex-col pt-[80px] items-center '>
       <FirstSection/>
       <SecondSection/>
       <ThirdSection/>
