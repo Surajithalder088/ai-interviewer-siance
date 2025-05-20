@@ -229,7 +229,7 @@ const MockInterview = () => {
        </div>
       </div>
      
-      <div className="flex flex-col items-center justify-center h-screen gap-4 [@media(max-width:1100px)]:py-[300px] [@media(max-width:1100px)]:w-[100%]">
+      <div className="flex flex-col items-center justify-center h-screen gap-4 [@media(max-width:1100px)]:my-[300px] [@media(max-width:1100px)]:w-[100%]">
         <div className="flex flex-col gap-3 items-center w-[60%]">
           <p className="text-[45px] text-center text-white [@media(max-width:1100px)]:text-[28px]">AI Interview Practice – Your Ultimate Online Interview Practice Tool</p>
           <p className="text-[25px] text-center text-gray-400  [@media(max-width:1100px)]:text-[18px]">Face the toughest mock interviews in the world—rigorous standards, intense questions,
