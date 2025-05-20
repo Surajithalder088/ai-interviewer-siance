@@ -2,7 +2,18 @@
 
 import { motion } from "motion/react"
 import { useState } from "react"
+import { useSelector } from "react-redux"
 import { Link, useNavigate } from "react-router-dom"
+import { RootState } from "../../store/store"
+
+
+
+interface UserState {
+  name: string;
+  email: string;
+  token: string;
+  // Add any other fields as needed
+}
 
 const MenuNavbar = () => {
  const [isHover,setIsHover] = useState(0)
@@ -11,6 +22,8 @@ const navigate=useNavigate()
 
 const [open,setOpen]=useState(false)
 const[userOpen,setUserOpen]=useState(false)
+
+const user:UserState = useSelector((state: RootState) => state.user);
 
   return (
    <>
@@ -166,7 +179,37 @@ const[userOpen,setUserOpen]=useState(false)
                 </div>
       </Link>
         <div className="flex gap-4 mr-6 items-center">
-          <div className="bg-orange-500 rounded-md px-4 py-2 text-white">Sign Up</div>
+          {
+            user.name===""? <div className="bg-orange-500 rounded-md px-4 py-2 text-white">Sign Up</div>
+            :
+            <div
+    
+    className="flex relative gap-4 bg-gray-300 rounded-full p-2 border-1">
+      <img onClick={()=>setUserOpen(!userOpen)} src="/user-pro.svg" className="w-[20px]"/>
+      { userOpen===true?<div 
+       className={ `absolute mt-[60px] ml-[-100px]  border-gray-500 bg-white shadow-xl rounded-md text-black p-5 `}>
+           <div className=" flex justify-between items-center font-medium  text-gray-500  text-[15px] p-2 cursor-pointer">
+          
+             Hey User123
+
+            <p onClick={()=>setUserOpen(false)
+            }
+            className="hover:text-red-500 hover:bg-gray-500 px-2 py-1 rounded-full"
+            >X</p>
+
+           </div>
+           <p>user123@gmail.com</p>
+           <p> User123 Roy</p>
+           <p className="bg-gray-200 p-2 rounded-lg">Account Settings</p>
+
+           <p className="bg-white px-2 rounded-lg"> Logout</p>
+             
+          
+         </div>:""}
+
+        </div>
+          }
+         
           <div onClick={() => setNavOpen(!navOpen)} 
           className="w-fit h-fit bg-white p-1 rounded-lg">
            { !navOpen?<img src="/navbar-menu.svg"/>:
