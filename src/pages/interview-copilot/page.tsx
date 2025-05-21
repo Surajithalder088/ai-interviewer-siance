@@ -90,7 +90,7 @@ const InterviewCopilot = () => {
      </div>
 
    
-    <div className={ `flex flex-col items-center ` }>
+    <div className={ `flex flex-col items-center pt-[60px]` }>
 
       <div className={`${sideBarOpen===false?"hidden":"flex flex-col gap-6"}  h-fit max-h-[100vh] py-[80px] w-[80%]`}>
        <p className="text-white text-4xl font-bold w-full">Live Interview</p>

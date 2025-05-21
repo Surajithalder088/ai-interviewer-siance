@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@daily-co/daily-js": "^0.79.0",
     "@eslint/js": "^9.22.0",
     "@reduxjs/toolkit": "^2.8.2",
     "@tailwindcss/vite": "^4.1.5",
@@ -24,6 +25,7 @@
     "html2canvas": "^1.4.1",
     "jspdf": "^3.0.1",
     "motion": "^12.10.1",
+    "peerjs": "^1.5.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-redux": "^9.2.0",

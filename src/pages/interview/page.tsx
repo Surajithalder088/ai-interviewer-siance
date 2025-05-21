@@ -290,13 +290,13 @@ const[speaker,setSpeaker]=useState(true)
 
   return (
     <>
-    <div className={`w-[100vw] max-h-[100vh]  relative  px-[100px] py-[70px] gap-4  h-full min-h-[100vh] bg-gradient-to-r from-black via-gray-600 to-black`}>
+    <div className={`w-[100vw] max-h-[100vh]  relative  px-[100px] [@media(max-width:1100px)]:px-[20px] py-[70px] gap-4  h-full min-h-[100vh] bg-gradient-to-r from-black via-gray-600 to-black`}>
 
-        <div className="flex items-center justify-between p-[20px] bg-gray-500 text-white rounded-lg">
+        <div className="flex items-center justify-between gap-[10px] p-[20px] [@media(max-width:1100px)]:w-fit bg-gray-500 text-white rounded-lg">
 
           <div className="flex gap-2 items-center"> 
              <p className="text-2xl text-white">Mock Interview</p>
-          <p className="text-md ">{Math.floor((time % 3600) / 60)}:{time % 60}</p>
+          <p className="text-md p-2 rounded-2xl bg-cyan-400">{Math.floor((time % 3600) / 60)}:{time % 60}</p>
           </div>
 
           <div className="flex gap-3">
@@ -339,13 +339,13 @@ const[speaker,setSpeaker]=useState(true)
 
         </div>
 
-        <div className="flex w-full bg-gray-700 h-[400px] items-center rounded-lg mt-4">
-            <div className=" flex items-center justify-center h-full   w-[40%] bg-black m-3">
+        <div className="flex [@media(max-width:1100px)]:flex-col w-full bg-gray-700 h-[400px] [@media(max-width:1100px)]:h-[500px] items-center rounded-lg mt-4">
+            <div className=" flex flex-col items-center justify-center h-full [@media(max-width:1100px)]:h-[50%]   w-[40%] [@media(max-width:1100px)]:w-[90%] bg-white m-3">
                 <video className="w-[80%] h-[80%] rounded-xl" ref={videoRef} src="/videos/ai-interviewer-2.mp4" autoPlay loop muted playsInline />
 
             </div>
 
-            <div  ref={scrollRef} className="flex   flex-col gap-3 w-[60%] overflow-y-scroll max-h-[380px] text-white font-semibold">
+            <div  ref={scrollRef} className="flex [@media(max-width:1100px)]:min-h-[100px]  flex-col gap-3 w-[60%] overflow-y-scroll max-h-[380px] [@media(max-width:1100px)]:max-h-[260px] [@media(max-width:1100px)]:w-[90%] text-white font-semibold">
                 {
             messages.filter((msg) => msg.role !== "system").map((msg,idx)=>(
                

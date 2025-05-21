@@ -62,7 +62,7 @@ const AutoApply = () => {
     >
      <MenuNavbar/>
      </div>
-        <div className="flex flex-col items-center gap-[80px]">
+        <div className="flex flex-col items-center gap-[80px] pt-[60px]">
 
         <div className={`${ sideBarOpen===false?"hidden":"flex flex-col"} w-[80%] py-[80px] gap-[20px]`}>
           <p className="text-3xl font-bold text-white">Auto Apply</p>
