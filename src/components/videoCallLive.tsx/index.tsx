@@ -119,8 +119,8 @@ const VideoCall: React.FC = () => {
   };
 
   return (
-    <div className="flex w-full">
-      <div className="w-[40%] p-5">
+    <div className="flex w-full [@media(max-width:1100px)]:flex-col">
+      <div className="w-[40%] [@media(max-width:1100px)]:w-[90%] p-5">
         <h2>🎥 1-to-1 Video Chat</h2>
         <p className="bg-gray-400 w-fit p-2 rounded-lg">
           <strong>Your ID:</strong> {peerId}
@@ -178,7 +178,7 @@ const VideoCall: React.FC = () => {
           </div>
         )}
       </div>
-      <div className="w-[60%] bg-amber-300"></div>
+      <div className="w-[60%] [@media(max-width:1100px)]:w-[90%] bg-amber-300"></div>
     </div>
   );
 };
