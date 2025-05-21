@@ -165,7 +165,7 @@ const VideoCall: React.FC = () => {
         </div>
 
         {incomingCall && (
-          <div className="mt-6 bg-yellow-200 p-4 fixed z-100 top-0 rounded-md">
+          <div className="mt-6 bg-yellow-200 p-4 fixed z-100 [@media(max-width:1100px)]:absolute top-0 rounded-md">
             <p className="mb-2 font-bold">📞 Incoming call...</p>
             <div className="flex gap-3">
               <button onClick={acceptCall} className="bg-green-500  px-4 py-2 rounded-md">
