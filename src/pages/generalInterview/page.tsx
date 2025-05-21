@@ -12,16 +12,10 @@ const navigate=useNavigate()
 
 
 
-
-
-
-
-
-
   return (
-    <div className="min-w-[100vw] h-[100vh] bg-gradient-to-bl from-gray-600 via-gray-300  to-gray-600">
+    <div className="min-w-[100vw] min-h-[100vh] bg-gradient-to-bl from-gray-600 via-gray-300  to-gray-600">
        
-       <div className="flex items-center justify-between p-3 bg-gray-500">
+       <div className="flex items-center justify-between p-3 text-white bg-gray-800">
         <div className="text-xl font-bold">Live Interview</div>
          <div className="flex gap-3">
 
@@ -56,8 +50,9 @@ const navigate=useNavigate()
           </div>
         </div>
 
-        <div className=" bg-transparent w-full ">
+        <div className=" bg-transparent w-full flex ">
          <VideoCall/>
+        
 
         </div>
 
