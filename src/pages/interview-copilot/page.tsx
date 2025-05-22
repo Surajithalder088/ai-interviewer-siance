@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 import Navbar from "../../components/navbar"
-import { motion } from "motion/react"
+import { motion } from "framer-motion"
 import QuestionAndAnswer from "../../components/Question&Answer"
 import Footer from "../../components/footer"
 import MenuNavbar from "../../components/MenuNavbar"
@@ -29,6 +29,9 @@ const InterviewCopilot = () => {
   const [showNavbar, setShowNavbar] = useState<boolean>(true)
      const lastScrollY = useRef(0);
      const [scrollUp, setScrollUp] = useState(false);
+
+     const [isHovered, setIsHovered] = useState(false);
+
 
 
       const user = useSelector((state: RootState) => state.user);
@@ -101,7 +104,12 @@ const InterviewCopilot = () => {
 
        <div className="flex flex-col items-center  justify-center">
 
-        <div className="flex [@media(max-width:1100px)]:flex-col items-center justify-around gap-[50px]">
+        <motion.div
+        initial={{ opacity: 0, y: 50 }}
+         whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: false, amount: 0.5 }}
+        transition={{ duration: 0.9 }}
+        className="flex [@media(max-width:1100px)]:flex-col items-center justify-around gap-[50px]">
           <div 
           onClick={()=>{
             navigate(`/general-interview/${654}`)
@@ -123,7 +131,7 @@ const InterviewCopilot = () => {
             <p className="text-[15px] font-bold">Phone Intervew</p>
           </div>
 
-        </div>
+        </motion.div>
 
          <div className="flex flex-col bg-gray-400 rounded-lg [@media(max-width:1100px)]:max-h-[200px] [@media(max-width:1100px)]:max-w-[270px] w-full min-h-[140px] mt-[50px] overflow-x-scroll">
          
@@ -156,11 +164,15 @@ const InterviewCopilot = () => {
       </div>
      
       <div className="flex flex-col items-center justify-center h-screen [@media(max-width:1100px)]:mt-[300px]  gap-4 [@media(max-width:1100px)]:w-[100%]">
-        <div className="flex flex-col gap-3 items-center w-[60%]">
+        <motion.div
+        initial={{ opacity: 0, y: -100 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.9 }}
+        className="flex flex-col gap-3 items-center w-[60%]">
           <p className="text-[45px] text-center text-white [@media(max-width:1100px)]:text-[28px]">Interview Copilot™: Your Ultimate AI Interview Assistant</p>
           <p className="text-[25px] text-center text-gray-400  [@media(max-width:1100px)]:text-[18px]">Get AI-powered responses that keep you calm, cool, and collected. Even when the pressure's on.</p>
-        </div>
-        <div 
+        </motion.div>
+        <motion.div 
        
         onClick={()=>{
               if(user.name===""){
@@ -173,7 +185,23 @@ const InterviewCopilot = () => {
                
 
             }}
-        className=" flex py-2 bg-gray-400 text-[18px] my-3 text-white cursor-pointer px-3 rounded-xl hover:bg-gray-200 hover:text-gray-600 font-bold">Get started for free</div>
+            initial={{scale: 1}}
+           animate={{  scale: 1 }}
+            transition={{ duration: 2.9}}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            
+            className="relative w-fit h-fit p-2 overflow-hidden rounded-xl bg-gray-300 text-black font-semibold flex items-center justify-center cursor-pointer"
+       >
+           <motion.div
+        className={`absolute inset-y-0 left-0 bg-cyan-400 ${isHovered?"border-1":"border-0"} rounded-xl`}
+        initial={{ width: "10%" }}
+        animate={{ width:isHovered? "100%":0 }}
+        transition={{ duration: 0.7, ease: "easeInOut" }}
+      />
+        
+          <div className="z-100">Get started for free</div>
+          </motion.div>
        
         <div className="flex flex-col items-center">
           <div className="flex items-center justify-center  [@media(max-width:1100px)]:justify-start   gap-2 w-[80%] font-bold [@media(max-width:1100px)]:max-w-screen  [@media(max-width:1100px)]:overflow-scroll [@media(max-width:1100px)]:scroll-x-auto">

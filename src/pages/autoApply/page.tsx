@@ -22,6 +22,8 @@ interface UserState {
 const AutoApply = () => {
 
 
+    const [isHovered, setIsHovered] = useState(false);
+
    const [showNavbar, setShowNavbar] = useState(true)
       const [lastscrollY, setLastScrollY] = useState(0)
       const [sideBarOpen,setSideBarOpen]=useState(false)
@@ -127,10 +129,18 @@ const AutoApply = () => {
 
             <div className="flex [@media(max-width:1100px)]:flex-col items-center gap-4 m-[100px] [@media(max-width:1100px)]:m-3">
                 <div className="flex flex-col items-center [@media(max-width:1100px)]:items-center gap-4">
-                    <p className="text-4xl text-white">Auto Apply helps you get 3x more interviews using AI</p>
-                    <p className="text-xl text-gray-500 text-center">No more endless applications, resume tweaks, or waiting for responses. Upload your CV. Select the type of job you want, 
-                        and Final Round AI will find relevant positions and apply for you automatically.</p>
-                    <p  
+                    <motion.p
+                    initial={{ opacity: 0, x: -100 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.9 }}
+                    className="text-4xl text-white">Auto Apply helps you get 3x more interviews using AI</motion.p>
+                    <motion.p
+                    initial={{ opacity: 0, x: -100 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.9 }}
+                    className="text-xl text-gray-500 text-center">No more endless applications, resume tweaks, or waiting for responses. Upload your CV. Select the type of job you want, 
+                        and Final Round AI will find relevant positions and apply for you automatically.</motion.p>
+                    <motion.p  
                      onClick={()=>{
               if(user.name===""){
                 navigate('/sign-in')
@@ -139,12 +149,31 @@ const AutoApply = () => {
                setSideBarOpen(true) ; 
                 
             }}
-                    className="bg-gray-500 cursor-pointer py-3 px-5 rounded-md w-fit text-white font-bold">Get More Interviews Today</p>
+                    initial={{scale: 1}}
+           animate={{  scale: 1 }}
+            transition={{ duration: 2.9}}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            
+            className="relative w-fit h-fit p-2 overflow-hidden rounded-xl bg-gray-300 text-black font-semibold flex items-center justify-center cursor-pointer"
+       >
+         <motion.div
+        className={`absolute inset-y-0 left-0 bg-cyan-400 ${isHovered?"border-1":"border-0"} rounded-xl`}
+        initial={{ width: "10%" }}
+        animate={{ width:isHovered? "100%":0 }}
+        transition={{ duration: 0.7, ease: "easeInOut" }}
+      />
+       <p className="z-100"> Get More Interviews Today</p>
+                    </motion.p>
                 </div>
-                <div>
+                <motion.div
+                initial={{ opacity: 0, x: 100 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.9 }}
+                >
                     <img  src="/auto-apply-image.png"/>
 
-                </div>
+                </motion.div>
 
             </div>
 

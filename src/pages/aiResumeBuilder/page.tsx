@@ -6,6 +6,7 @@ import MenuNavbar from "../../components/MenuNavbar"
 import { useNavigate } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { RootState } from "../../store/store"
+import { motion } from "framer-motion"
 
 
 interface UserState {
@@ -18,6 +19,8 @@ interface UserState {
 
 const AiResumeBuilder = () => {
 
+
+  const [isHovered,setIsHovered]=useState(false)
     const [showNavbar, setShowNavbar] = useState(true)
     const [lastscrollY, setLastScrollY] = useState(0)
        const [sideBarOpen,setSideBarOpen]=useState(false)
@@ -60,7 +63,7 @@ const AiResumeBuilder = () => {
      <MenuNavbar/>
      </div>
 
-        <div className="flex flex-col items-center pt-[60px]">
+    <div className="flex flex-col items-center pt-[60px]">
 
       <div className={`${sideBarOpen===false?"hidden":"flex flex-col gap-6"}  h-fit max-h-[100vh] py-[80px] w-[80%]`}>
        <p className="text-white text-4xl font-bold w-full">Document Center</p>
@@ -70,7 +73,12 @@ const AiResumeBuilder = () => {
 
        <div className="flex flex-col items-center justify-center">
 
-        <div className="flex items-center [@media(max-width:1100px)]:flex-col justify-around gap-[50px]">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+         whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: false, amount: 0.5 }}
+        transition={{ duration: 0.9 }}
+        className="flex items-center [@media(max-width:1100px)]:flex-col justify-around gap-[50px]">
 
            {/* below one is  mock interview based on specific job role */}
           <div className="flex flex-col hover:bg-gray-300 w-[280px] hover:text-black cursor-pointer items-center py-3 px-6 border-1 border-gray-400 rounded-md bg-gray-500 text-white">
@@ -92,7 +100,7 @@ const AiResumeBuilder = () => {
           </div>
           
 
-        </div>
+        </motion.div>
 
         <div className="flex flex-col bg-gray-400 rounded-lg w-full min-h-[200px] mt-[50px]">
          
@@ -103,25 +111,51 @@ const AiResumeBuilder = () => {
 
        </div>
       </div>
-            <div className="flex [@media(max-width:1100px)]:flex-col items-center justify-center p-[30px]">
+            <div className="flex [@media(max-width:1100px)]:flex-col items-center justify-center p-[30px] py-[80px]">
                 <div className="flex flex-col gap-4 w-[50%] [@media(max-width:1100px)]:w-full [@media(max-width:1100px)]:items-center text-white">
-                    <p className="text-4xl font-bold w-full p-4">AI Resume Builder Create a Job-Winning Resume in Minutes—100% Free</p>
-                    <p className="text-2xl w-full p-4">Create tailored, ATS-optimized resumes that turn applications into offers</p>
-                    <p
+                    <motion.p
+                    initial={{ opacity: 0, x: -50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.9 }}
+                    className="text-4xl font-bold w-full p-4">AI Resume Builder Create a Job-Winning Resume in Minutes—100% Free</motion.p>
+                    <motion.p 
+                    initial={{ opacity: 0, x: -50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.9 }}
+                    className="text-2xl w-full p-4">Create tailored, ATS-optimized resumes that turn applications into offers</motion.p>
+                    <motion.p
                     onClick={()=>{
               if(user.name===""){
                 navigate('/sign-in')
                 return
               }
                setSideBarOpen(true) ; 
-                
-               
-               
+                }}
 
-            }}
-                    className="font-semibold py-3 px-5 bg-gray-500 cursor-pointer rounded-md w-fit text-white m-3">Get Started Now</p>
+                    initial={{scale: 1}}
+           animate={{  scale: 1 }}
+            transition={{ duration: 2.9}}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            
+            className="relative w-fit h-fit p-2 overflow-hidden rounded-xl bg-gray-300 text-black font-semibold flex items-center justify-center cursor-pointer"
+       >
+         <motion.div
+        className={`absolute inset-y-0 left-0 bg-cyan-400 ${isHovered?"border-1":"border-0"} rounded-xl`}
+        initial={{ width: "10%" }}
+        animate={{ width:isHovered? "100%":0 }}
+        transition={{ duration: 0.7, ease: "easeInOut" }}
+      />
+       <p className="z-100"> Get Started Now</p>
+                    </motion.p>
                 </div>
-                <div className="w-[50%] [@media(max-width:1100px)]:w-full"> <img src="/ai-image-builder.png"/></div>
+                <motion.div
+                initial={{ opacity: 0, x: 100 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.9 }}
+                className="w-[50%] [@media(max-width:1100px)]:w-full"> 
+                  <img src="/ai-image-builder.png"/>
+                  </motion.div>
             </div>
             <div className="flex flex-col items-center gap-[100px] w-[80%]">
                 <div className="flex flex-col items-center gap-6">

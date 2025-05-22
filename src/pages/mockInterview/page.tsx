@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store/store";
 import { setInterview } from "../../store/interviewSlice";
+import{ motion} from "framer-motion";
 
 
 
@@ -38,7 +39,7 @@ interface InterviewState {
 
 const MockInterview = () => {
 
-
+const [isHovered, setIsHovered] = useState(false);
    
    const user:UserState = useSelector((state: RootState) => state.user);
    const dispatch=useDispatch<AppDispatch>();
@@ -136,7 +137,12 @@ const MockInterview = () => {
 
        <div className="flex flex-col items-center justify-center">
 
-        <div className="flex items-center [@media(max-width:1100px)]:flex-col justify-around gap-[50px]">
+        <motion.div
+        initial={{ opacity: 0, y: 50 }}
+         whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: false, amount: 0.5 }}
+        transition={{ duration: 0.9 }}
+        className="flex items-center [@media(max-width:1100px)]:flex-col justify-around gap-[50px]">
 
            {/* below one is  mock interview based on specific job role */}
           <div
@@ -201,7 +207,7 @@ const MockInterview = () => {
           </div>
           
 
-        </div>
+        </motion.div>
 
         <div className="flex flex-col bg-gray-400 rounded-lg [@media(max-width:1100px)]:max-h-[200px] [@media(max-width:1100px)]:max-w-[270px] w-full min-h-[140px] mt-[50px] overflow-x-scroll">
          
@@ -233,15 +239,19 @@ const MockInterview = () => {
       </div>
      
       <div className="flex flex-col items-center justify-center h-screen gap-4 [@media(max-width:1100px)]:my-[300px] [@media(max-width:1100px)]:w-[100%]">
-        <div className="flex flex-col gap-3 items-center w-[60%]">
+        <motion.div
+        initial={{ opacity: 0, y: -50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.9 }}
+        className="flex flex-col gap-3 items-center w-[60%]">
           <p className="text-[45px] text-center text-white [@media(max-width:1100px)]:text-[28px]">AI Interview Practice – Your Ultimate Online Interview Practice Tool</p>
           <p className="text-[25px] text-center text-gray-400  [@media(max-width:1100px)]:text-[18px]">Face the toughest mock interviews in the world—rigorous standards, intense questions,
            and zero room for error. Practice with industry giants like Microsoft, Netflix, and OpenAI, and gain the confidence and
            skills you need to ace any real interview with ease.</p>
-        </div>
+        </ motion.div>
 
         
-        <div 
+        <motion.div 
        
             onClick={()=>{
               if(user.name===""){
@@ -251,7 +261,22 @@ const MockInterview = () => {
                setSideBarOpen(true) ; 
                 setScrollUp(true)
             }}
-        className=" flex py-2 bg-gray-400 text-[18px] my-3 text-white cursor-pointer px-3 rounded-xl hover:bg-gray-200 hover:text-gray-600 font-bold">Get started for free</div>
+         initial={{scale: 1}}
+           animate={{  scale: 1 }}
+            transition={{ duration: 2.9}}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            
+            className="relative w-fit h-fit p-2 overflow-hidden rounded-xl bg-gray-300 text-black font-semibold flex items-center justify-center cursor-pointer"
+       >
+         <motion.div
+        className={`absolute inset-y-0 left-0 bg-cyan-400 ${isHovered?"border-1":"border-0"} rounded-xl`}
+        initial={{ width: "10%" }}
+        animate={{ width:isHovered? "100%":0 }}
+        transition={{ duration: 0.7, ease: "easeInOut" }}
+      />
+          <p className="z-100">Get started for free</p>
+          </motion.div>
         </div>
 
       <div className="flex flex-col items-center mb-5 justify-center [@media(max-width:1100px)]:w-[90%]">

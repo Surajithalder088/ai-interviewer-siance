@@ -4,6 +4,7 @@ import { motion } from "motion/react"
 import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { RootState } from "../../store/store"
+import { useState } from "react";
 
 
 interface UserState {
@@ -21,6 +22,8 @@ const FirstSection = () => {
    const navigate= useNavigate()
    const user:UserState = useSelector((state: RootState) => state.user);
 
+    const [isHovered, setIsHovered] = useState(false);
+
     
 
   return (
@@ -28,7 +31,11 @@ const FirstSection = () => {
     
     <div className='w-full h-full min-h-[100vh] [@media(max-width:1100px)]:flex-col  flex items-center justify-center'>
 
-        <div className='flex flex-col items-center gap-8 w-[40%] [@media(max-width:1100px)]:w-[80%] '>
+        <motion.div 
+        initial={{ opacity: 0, x: -100 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.9 }}
+        className='flex flex-col items-center gap-8 w-[40%] [@media(max-width:1100px)]:w-[80%] '>
             <p className=' text-5xl text-center [@media(max-width:1100px)]:text-3xl'>Unlock Your Interview Superpowers with AI,
             Your AI-Powered Interview Copilot</p>
             <div className='flex gap-4 text-[23px] [@media(max-width:1100px)]:text-[16px]'>
@@ -39,7 +46,7 @@ const FirstSection = () => {
                     <p> 1.2M+ Interviews Aced</p>
             </div>
 
-            <div
+            <motion.div
             onClick={()=>{
               if(user.name===""){
                 navigate('/sign-in')
@@ -50,19 +57,37 @@ const FirstSection = () => {
                
 
             }}
-            className='bg-gray-400 p-4 flex  items-center justify-around gap-2 hover:gap-6 rounded-xl text-black hover:text-white hover:bg-gray-600 w-fit text-[20px] [@media(max-width:1100px)]:text-[18px] cursor-pointer'>
-              Activate AI Interview Mode Now  <p className="">{"->"}</p>
+            initial={{scale: 1}}
+            whileHover={{  scale: 1 }}
+            transition={{ duration: 2.9}}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            
+            className="relative w-fit h-fit p-2 overflow-hidden rounded-xl bg-gray-300 text-black font-semibold flex items-center justify-center cursor-pointer"
+       >
+        <motion.div
+        className={`absolute inset-y-0 left-0 bg-cyan-400 ${isHovered?"border-1":"border-0"} rounded-xl`}
+        initial={{ width: "10%" }}
+        animate={{ width:isHovered? "100%":0 }}
+        transition={{ duration: 0.7, ease: "easeInOut" }}
+      />
+             <p className="z-100"> Activate AI Interview Mode Now  {"->"}</p>
 
-            </div>
+            </motion.div>
+
             <p className='text-2xl text-gray-600 [@media(max-width:1100px)]:text-[16px] py-3'>Interview Copilot generating actionable guidance for interviews in real-time</p>
 
-        </div>
-        <div className='w-[50%] h-[80%] [@media(max-width:1100px)]:w-[80%] bg-gray-600 '>
+        </motion.div>
+        <motion.div
+         initial={{ opacity: 0, x: 100 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.9 }}
+        className='w-[50%] h-[80%] [@media(max-width:1100px)]:w-[80%] bg-gray-600 '>
         <div className=" w-full h-full rounded-3xl">
           <video className='w-full z-[-10] h-full'src='/finalround-hero-video.mp4' autoPlay loop muted playsInline/>
         </div>
             
-        </div>
+        </motion.div>
     </div>
     <div className='flex flex-col gap-4 items-center justify-center w-full h-full'>
         <div className='text-[45px] [@media(max-width:1100px)]:text-[25px] [@media(max-width:1100px)]:w-[80%] w-[50%]'>300,000+ offers from the most exciting companies and organizations</div>

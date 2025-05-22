@@ -13,7 +13,7 @@ const navigate=useNavigate()
 
 
   return (
-    <div className="min-w-[100vw] min-h-[100vh] bg-gradient-to-bl from-gray-600 via-gray-300  to-gray-600">
+    <div className="min-w-[100vw] min-h-[100vh] bg-gradient-to-tl text-white from-gray-900 via-gray-500  to-gray-900">
        
        <div className="flex items-center justify-between p-3 text-white bg-gray-800">
         <div className="text-xl font-bold">Live Interview</div>

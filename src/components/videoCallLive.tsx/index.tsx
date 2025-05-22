@@ -164,7 +164,7 @@ const VideoCall: React.FC = () => {
          
         </div>
 
-        <div className="flex items-center gap-3 mt-4">
+        <div className="flex items-center text-black gap-3 mt-4">
           <button onClick={toggleAudio} className="bg-gray-300 p-2 rounded-lg">
             {audioEnabled ? "🔇 Mute Mic" : "🎤 Unmute Mic"}
           </button>
