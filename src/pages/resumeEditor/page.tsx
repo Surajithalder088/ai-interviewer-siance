@@ -2,6 +2,7 @@ import { useRef, useState } from "react"
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import axios from "axios";
+import {motion} from "framer-motion"
 
 
 
@@ -169,7 +170,7 @@ const downloadPDF = async () => {
 
 
   return (
-    <div className="min-w-[100vw] h-[100vh] bg-gray-700 p-[20px]">
+    <div className="min-w-[100vw] h-[100vh] bg-gradient-to-l from-gray-800 via-gray-200 to-gray-800  p-[20px]">
         <div className="flex items-center justify-between text-white font-bold text-2xl">
             <p>AI Resume Builder</p>
 
@@ -184,7 +185,11 @@ const downloadPDF = async () => {
 
             <div className=" min-w-full min-h-[90%] max-h-[90%] bg-gradient-to-br from-gray-500 via-white to-gray-500 m-2 rounded-lg  flex  gap-[30px]">
                 
-                <div className="w-[50%] bg-gray-300 rounded-lg p-2 m-2 border-1 overflow-y-scroll max-h-[80%]">
+                <motion.div
+                initial={{ opacity: 0, y: -100 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.9 }}
+                className="w-[50%] bg-gray-300 rounded-lg p-2 m-2 border-1 overflow-y-scroll max-h-[80%]">
                     <div className="flex flex-col gap-2 text-xl">
 
                        <div className="flex gap-2">
@@ -429,9 +434,13 @@ const downloadPDF = async () => {
                         <p className="text-[15px] flex gap-3 py-3">Font Size <input className="w-[30px] h-[30px]  outline-none border-1"/></p>
                         <p className="text-[15px] ">Document Size</p>
                     </div>
-                </div>
+                </motion.div>
 
-                <div className=" w-fit min-h-[90%]   flex flex-col items-center gap-[50px] overflow-y-scroll">
+                <motion.div 
+                initial={{ opacity: 0}}
+                animate={{ opacity: 1.1}}
+                transition={{ duration: 1.5 }}
+                className=" w-fit min-h-[90%] py-2  flex flex-col items-center gap-[50px] overflow-y-scroll">
 
                     <p className="text-[10px] font-semibold text-white text-center bg-gray-500 rounded-2xl p-2 max-w-[100px]">Choose resume template</p>
                   {template.map((t)=>(
@@ -439,9 +448,13 @@ const downloadPDF = async () => {
                     <img className={`w-[180px] hover:border-2 ${t===resumeTemplate?"border-1 border-gray-600":""}`} src={t==="first"?"/first_resume.jpg":t==="second"?"/second_resume.jpg":"/third_resume.jpg"}/>
                     </p>
                   ))}
-                </div>
+                </motion.div>
 
-                <div className="w-[45%] h-full flex items-center justify-center"
+                <motion.div
+                initial={{ opacity: 0, y: 100 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.9 }}
+                className="w-[45%] h-full flex items-center justify-center"
                 style={{fontFamily:"roboto"}}
                 >
                           
@@ -737,7 +750,7 @@ const downloadPDF = async () => {
                      }     
                           
 
-                </div>
+                </motion.div>
 
             </div>
         

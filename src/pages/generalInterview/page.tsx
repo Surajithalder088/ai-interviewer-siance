@@ -15,7 +15,7 @@ const navigate=useNavigate()
   return (
     <div className="min-w-[100vw] min-h-[100vh] bg-gradient-to-tl text-white from-gray-900 via-gray-500  to-gray-900">
        
-       <div className="flex items-center justify-between p-3 text-white bg-gray-800">
+       <div className="flex items-center justify-between p-3 px-[150px] text-white bg-gray-800">
         <div className="text-xl font-bold">Live Interview</div>
          <div className="flex gap-3">
 
@@ -50,7 +50,7 @@ const navigate=useNavigate()
           </div>
         </div>
 
-        <div className=" bg-transparent w-full flex ">
+        <div className=" bg-transparent w-full flex pl-[100px]">
          <VideoCall/>
         
 

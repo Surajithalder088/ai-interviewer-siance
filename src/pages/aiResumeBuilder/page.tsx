@@ -138,7 +138,7 @@ const AiResumeBuilder = () => {
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
             
-            className="relative w-fit h-fit p-2 overflow-hidden rounded-xl bg-gray-300 text-black font-semibold flex items-center justify-center cursor-pointer"
+            className="relative w-fit h-fit p-2 text-center overflow-hidden rounded-xl bg-gray-300 text-black font-semibold flex items-center justify-center cursor-pointer"
        >
          <motion.div
         className={`absolute inset-y-0 left-0 bg-cyan-400 ${isHovered?"border-1":"border-0"} rounded-xl`}

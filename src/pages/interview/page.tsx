@@ -4,6 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
+import {motion} from "framer-motion"
 
 
 interface InterviewState {
@@ -50,14 +51,25 @@ const ChatMessage: React.FC<ChatMessageProps> = ({role, message,time }) => {
     {
      time!==0 && !isUser&& <p className="bg-gray-500 p-1 rounded-lg h-fit">{timeStamp.toString()}</p>
     }
-      <div
-        className={`max-w-[70%] p-4 text-sm rounded-2xl shadow-md leading-relaxed ${
-          isUser
-            ? "bg-gray-600 text-gray-200 rounded-tr-none"
-            : "bg-blue-100 text-black rounded-tl-none"
-        }`}
+    { isUser? <motion.div
+        initial={{ opacity: 0, x: 100 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.5 }}
+        className={`max-w-[70%] p-4 text-sm rounded-2xl shadow-md leading-relaxed  bg-gray-600 text-gray-200 rounded-tr-none
+             
+        `}
         dangerouslySetInnerHTML={{ __html: formattedMessage }}
-      />
+      ></motion.div>
+      :
+       <motion.div
+       initial={{ opacity: 0, x: -100 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.5 }}
+        className={`max-w-[70%] p-4 text-sm rounded-2xl shadow-md leading-relaxed bg-blue-100 text-black rounded-tl-none
+        `}
+        dangerouslySetInnerHTML={{ __html: formattedMessage }}
+      ></motion.div>
+      }
     </div>
 
   );
@@ -290,9 +302,13 @@ const[speaker,setSpeaker]=useState(true)
 
   return (
     <>
-    <div className={`w-[100vw] max-h-[100vh]  relative  px-[100px] [@media(max-width:1100px)]:px-[20px] py-[70px] gap-4  h-full min-h-[100vh] bg-gradient-to-r from-black via-gray-600 to-black`}>
+    <div className={`w-[100vw] max-h-[105vh]  relative  px-[100px] [@media(max-width:1100px)]:px-[20px] py-[70px] gap-4  h-full min-h-[100vh] bg-gradient-to-r from-black via-gray-600 to-black`}>
 
-        <div className="flex items-center justify-between gap-[10px] p-[20px] [@media(max-width:1100px)]:w-fit bg-gray-500 text-white rounded-lg">
+        <motion.div
+        initial={{ opacity: 0, x: 200 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 1.2 }}
+        className="flex items-center justify-between gap-[10px] p-[20px] [@media(max-width:1100px)]:w-fit bg-gray-500 text-white rounded-lg">
 
           <div className="flex gap-2 items-center"> 
              <p className="text-2xl text-white">Mock Interview</p>
@@ -337,7 +353,7 @@ const[speaker,setSpeaker]=useState(true)
           </div>
 
 
-        </div>
+        </motion.div>
 
         <div className="flex [@media(max-width:1100px)]:flex-col w-full bg-gray-700 h-[400px] [@media(max-width:1100px)]:h-[500px] items-center rounded-lg mt-4">
             <div className=" flex flex-col items-center justify-center h-full [@media(max-width:1100px)]:h-[50%]   w-[40%] [@media(max-width:1100px)]:w-[90%] bg-white m-3">
@@ -350,8 +366,11 @@ const[speaker,setSpeaker]=useState(true)
             messages.filter((msg) => msg.role !== "system").map((msg,idx)=>(
                
                  
-                <ChatMessage key={idx} role={msg.role as "user" | "assistant"} message={msg.content} time={msg.times}/>
+               <motion.div
                
+               >
+              <ChatMessage key={idx} role={msg.role as "user" | "assistant"} message={msg.content} time={msg.times}/>
+               </motion.div>
             ))
           }
           {
