@@ -58,17 +58,54 @@ const QuestionBank = () => {
         </div>
       </div>
 
-      <div className="w-[80%] border-1 rounded-lg p-[20px] ">
-        <div className="flex items-center justify-between"><p>284.7K views</p> <p>28 minutes ago</p></div>
-       <p className="text-xl font-bold">Tell me about yourself.</p>
-        <div className="flex items-center gap-3">
+      <div className="w-[80%] border-1 rounded-lg p-[20px] bg-gray-800 my-2">
+
+        <div className="flex items-center justify-between text-gray-400">
+          <p>284.7K views</p> <p>28 minutes ago</p>
+        </div>
+       <p className="text-xl font-bold text-white">Tell me about yourself.</p>
+        <div className="flex items-center gap-3 text-white">
           <p>Algorithms</p><p>|</p>
           <p>Asked at Meta</p><p>|</p>
           <p>Difficulty:Medium</p>
         </div>
-        <div className="flex items-center justify-between my-3 p-2 rounded-lg border-1">
+        <div className="flex items-center justify-between my-3 p-2 rounded-lg border-1 text-white">
           <p>580 Users Practiced</p>
-          <p className="cursor-pointer bg-cyan-400 px-4 rounded-lg">Practice with This Question</p>
+          <p className="cursor-pointer bg-cyan-400 px-4 rounded-lg text-black font-semibold">Practice with This Question</p>
+        </div>
+
+      </div>
+      <div className="w-[80%] border-1 rounded-lg p-[20px] bg-gray-800 my-2">
+
+        <div className="flex items-center justify-between text-gray-400">
+          <p>284.7K views</p> <p>28 minutes ago</p>
+        </div>
+       <p className="text-xl font-bold text-white">Tell me about yourself.</p>
+        <div className="flex items-center gap-3 text-white">
+          <p>Algorithms</p><p>|</p>
+          <p>Asked at Meta</p><p>|</p>
+          <p>Difficulty:Medium</p>
+        </div>
+        <div className="flex items-center justify-between my-3 p-2 rounded-lg border-1 text-white">
+          <p>580 Users Practiced</p>
+          <p className="cursor-pointer bg-cyan-400 px-4 rounded-lg text-black font-semibold">Practice with This Question</p>
+        </div>
+
+      </div>
+      <div className="w-[80%] border-1 rounded-lg p-[20px] bg-gray-800 my-2">
+
+        <div className="flex items-center justify-between text-gray-400">
+          <p>284.7K views</p> <p>28 minutes ago</p>
+        </div>
+       <p className="text-xl font-bold text-white">Tell me about yourself.</p>
+        <div className="flex items-center gap-3 text-white">
+          <p>Algorithms</p><p>|</p>
+          <p>Asked at Meta</p><p>|</p>
+          <p>Difficulty:Medium</p>
+        </div>
+        <div className="flex items-center justify-between my-3 p-2 rounded-lg border-1 text-white">
+          <p>580 Users Practiced</p>
+          <p className="cursor-pointer bg-cyan-400 px-4 rounded-lg text-black font-semibold">Practice with This Question</p>
         </div>
 
       </div>
