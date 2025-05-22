@@ -158,7 +158,7 @@ const [isHovered, setIsHovered] = useState(false);
             setHoverDetail("")
           }}
           className="flex flex-col hover:bg-gray-300 w-[280px] hover:text-black cursor-pointer items-center py-3 px-6 border-1 border-gray-400 rounded-md bg-gray-500 text-white">
-            <img src="/ai-assesment.png" className="w-[50px]"/>
+            <img src="/ai-assesment.png" className="w-[50px] [@media(max-width:1100px)]:hidden"/>
             <p className="text-[15px] font-bold">Start Job Readiness Assessment</p>
           </div>
           {hoverDetail==="ReadinessAssessment"&& <div
@@ -186,7 +186,7 @@ const [isHovered, setIsHovered] = useState(false);
             setHoverDetail("")
           }}
           className="flex flex-col hover:bg-gray-300 w-[250px] hover:text-black cursor-pointer items-center py-3 px-6 border-1 border-gray-400 rounded-md bg-gray-500 text-white">
-            <img src="/ai-mock.png" className="w-[50px]"/>
+            <img src="/ai-mock.png" className="w-[50px] [@media(max-width:1100px)]:hidden"/>
             <p className="text-[15px] font-bold">Start Mock Interview</p>
           </div>
          {hoverDetail==="MockInterview"&& <div 
@@ -202,7 +202,7 @@ const [isHovered, setIsHovered] = useState(false);
 
 
           <div onClick={()=>navigate('/question-bank')} className="flex flex-col hover:bg-gray-300 w-[250px] hover:text-black cursor-pointer items-center py-3 px-6 border-1 border-gray-400 rounded-md bg-gray-500 text-white">
-            <img src="/ai-practice.png" className="w-[50px]"/>
+            <img src="/ai-practice.png" className="w-[50px] [@media(max-width:1100px)]:hidden"/>
             <p className="text-[15px] font-bold">Start Practicing Question</p>
           </div>
           

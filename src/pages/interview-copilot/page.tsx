@@ -115,19 +115,19 @@ const InterviewCopilot = () => {
             navigate(`/general-interview/${654}`)
           }}
           className="flex flex-col hover:bg-gray-300 w-[250px] hover:text-black cursor-pointer items-center py-3 px-6 border-1 border-gray-400 rounded-md bg-gray-500 text-white">
-            <img src="/laptop.png" className="w-[50px]"/>
+            <img src="/laptop.png" className="w-[50px] [@media(max-width:1100px)]:hidden"/>
             <p className="text-[15px] font-bold">General Interview</p>
           </div>
           <div className="flex flex-col cursor-not-allowed hover:bg-gray-300 w-[250px] hover:text-black  items-center py-3 px-6 border-1 border-gray-400 rounded-md bg-gray-500 text-white">
-            <img src="/coding-interview.png" className="w-[50px]"/>
+            <img src="/coding-interview.png" className="w-[50px] [@media(max-width:1100px)]:hidden"/>
             <p className="text-[15px] font-bold">Coding Copilote Interview</p>
-          </div>
+          </div> 
           <div className="flex flex-col hover:bg-gray-300 w-[250px] hover:text-black cursor-not-allowed items-center py-3 px-6 border-1 border-gray-400 rounded-md bg-gray-500 text-white">
-            <img src="/hireview.png" className="w-[50px]"/>
+            <img src="/hireview.png" className="w-[50px] [@media(max-width:1100px)]:hidden"/>
             <p className="text-[15px] font-bold">HireVue Interview</p>
           </div>
           <div className="flex flex-col hover:bg-gray-300 w-[250px] hover:text-black cursor-not-allowed items-center py-3 px-6 border-1 border-gray-400 rounded-md bg-gray-500 text-white">
-            <img src="/phone-interview.png" className="w-[50px]"/>
+            <img src="/phone-interview.png" className="w-[50px] [@media(max-width:1100px)]:hidden"/>
             <p className="text-[15px] font-bold">Phone Intervew</p>
           </div>
 

@@ -17,36 +17,27 @@ const SecondSection = () => {
         transition={{ duration: 0.4 }}>
         <FirstBoard/>
       </motion.div >
-        <motion.div    initial={{ opacity: 0, x: -50 }}
-         whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: false, amount: 0.5 }}
-        transition={{ duration: 0.4 }}>
+        
         <SecondBoard/>
-        </motion.div>
+        
         <motion.div    initial={{ opacity: 0, x: 50 }}
          whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: false, amount: 0.5 }}
         transition={{ duration: 0.4 }}>
         <ThirdBoard/>
         </motion.div>
-        <motion.div    initial={{ opacity: 0, x: -50 }}
-         whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: false, amount: 0.5 }}
-        transition={{ duration: 0.4 }}>
+      
         <FourthBoard/>
-        </motion.div>
+        
         <motion.div    initial={{ opacity: 0, x: 50 }}
          whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: false, amount: 0.5 }}
         transition={{ duration: 0.4 }}>
         <FifthBoard/>
         </motion.div>
-        <motion.div    initial={{ opacity: 0, x: -50 }}
-         whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: false, amount: 0.5 }}
-        transition={{ duration: 0.4 }}>
+      
         <SixthBoard/>
-        </motion.div>
+        
 
     </div>
   )
