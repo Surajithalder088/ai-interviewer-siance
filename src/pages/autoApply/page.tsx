@@ -19,6 +19,21 @@ interface UserState {
  const icons=["/airbnb_logo.svg","/expedia_group_logo.svg","/tiktok_logo.svg","/ey_logo.svg","/mckinsey__company_logo.svg","/pwc_logo.svg","/kpmg_logo.svg","/goldman_sachs_logo.svg","/tesla_logo.svg","stripe_logo.svg","/jp_morgan_logo.svg","/lockheed_martin_logo.svg","/airbnb_logo.svg","/expedia_group_logo.svg","/tiktok_logo.svg","/ey_logo.svg","/mckinsey__company_logo.svg","/pwc_logo.svg","/kpmg_logo.svg","/goldman_sachs_logo.svg","/tesla_logo.svg","stripe_logo.svg","/jp_morgan_logo.svg","/lockheed_martin_logo.svg",]
 
 
+
+const data = [
+  { role: "Software Developer", location: "Bangalore,India", company: "Google India", matchingRate: "medium",action:"Quick apply" },
+  { role: "Software Developer", location: "Bangalore,India", company: "Google India", matchingRate: "medium",action:"Quick apply" },
+   { role: "Software Developer", location: "Bangalore,India", company: "Google India", matchingRate: "medium",action:"Quick apply" },
+    { role: "Software Developer", location: "Bangalore,India", company: "Google India", matchingRate: "medium",action:"Quick apply" },
+     { role: "Software Developer", location: "Bangalore,India", company: "Google India", matchingRate: "medium",action:"Quick apply" },
+      { role: "Software Developer", location: "Bangalore,India", company: "Google India", matchingRate: "medium",action:"Quick apply" },
+       { role: "Software Developer", location: "Bangalore,India", company: "Google India", matchingRate: "medium",action:"Quick apply" },
+        { role: "Software Developer", location: "Bangalore,India", company: "Google India", matchingRate: "medium",action:"Quick apply" },
+         { role: "Software Developer", location: "Bangalore,India", company: "Google India", matchingRate: "medium",action:"Quick apply" },
+          { role: "Software Developer", location: "Bangalore,India", company: "Google India", matchingRate: "medium",action:"Quick apply" },
+];
+
+
 const AutoApply = () => {
 
 
@@ -86,7 +101,9 @@ const AutoApply = () => {
                  </div>
 
                   <hr/>
-                  <form className=" p-4  text-gray-400 font-semibold ">
+
+                 {jobState==="profile"? 
+                 <form className=" p-4  text-gray-400 font-semibold ">
                     <p className="text-xl text-white p-2"> Resume </p>
                     <p>Choose your resume</p>
                     <input className=" p-2 text-white outline-1  rounded-lg outline-gray-500 my-2"/>
@@ -117,6 +134,68 @@ const AutoApply = () => {
                     <div className="bg-slate-900 text-white rounded-lg p-3 w-fit ">Submit</div>
 
                   </form>
+                  :jobState==="matched"?
+
+          <div className="flex flex-col gap-4 max-h-[300px] overflow-y-scroll">
+                    <table className="w-full  ">
+           <thead>
+          <tr className="bg-gray-200 text-left text-black">
+            <th className="px-4 py-2 border">Role</th>
+            <th className="px-4 py-2 border">Location</th>
+            <th className="px-4 py-2 border">Company</th>
+            <th className="px-4 py-2 border">Matching Rate</th>
+            <th className="px-4 py-2 border">Action</th>
+          </tr>
+        </thead>
+                <tbody>
+          {data.map((user, index) => (
+            <tr key={index} className="hover:bg-gray-100 hover:text-black">
+              <td className="px-4 py-2 border">{user.role}</td>
+              <td className="px-4 py-2 border">{user.location}</td>
+              <td className="px-4 py-2 border">{user.company}</td>
+              <td className="px-4 py-2 border">{user.matchingRate}</td>
+              <td className="px-4 py-2 border ">
+               <p className="border-1 cursor-pointer hover:bg-cyan-400 p-1 text-center rounded-lg"> {user.action}</p>
+                </td>
+
+            </tr>
+          ))}
+        </tbody>
+
+          
+         </table>
+                  </div>
+                  :
+                 <div className="flex flex-col gap-4 max-h-[300px] overflow-y-scroll">
+                    <table className="w-full  ">
+           <thead>
+          <tr className="bg-gray-200 text-left text-black">
+            <th className="px-4 py-2 border">Role</th>
+            <th className="px-4 py-2 border">Location</th>
+            <th className="px-4 py-2 border">Company</th>
+            <th className="px-4 py-2 border">Matching Rate</th>
+            <th className="px-4 py-2 border">Status</th>
+          </tr>
+        </thead>
+                <tbody>
+          {data.map((user, index) => (
+            <tr key={index} className="hover:bg-gray-100 hover:text-black">
+              <td className="px-4 py-2 border">{user.role}</td>
+              <td className="px-4 py-2 border">{user.location}</td>
+              <td className="px-4 py-2 border">{user.company}</td>
+              <td className="px-4 py-2 border">{user.matchingRate}</td>
+              <td className="px-4 py-2 border ">
+               <p className="border-1 cursor-pointer hover:bg-cyan-400 p-1 text-center rounded-lg"> {user.action}</p>
+                </td>
+
+            </tr>
+          ))}
+        </tbody>
+
+          
+         </table>
+                  </div>
+                  }
                 </div>
 
 

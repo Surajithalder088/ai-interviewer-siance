@@ -45,7 +45,7 @@ const user:UserState = useSelector((state: RootState) => state.user);
           <p className="flex items-center gap-2">AI Application <img className="h-4 w-4 hover:rotate-x-180" src={isHover===1?"/up-arrow.svg":"/down-arrow.png"}/>
          </p>
        {isHover===1 ?  <div onMouseEnter={() => setIsHover(1)} onMouseLeave={() => setIsHover(0)}
-        className={ `absolute mt-[145px] mr-[30px] border-gray-500 bg-white text-black shadow-lg rounded-md p-5 `}>
+        className={ `absolute mt-[145px] mr-[30px] border-gray-500 bg-white text-black shadow-cyan-300 shadow-2xl rounded-md p-5 `}>
             <p 
                onClick={(e) => {
         e.stopPropagation();
@@ -77,7 +77,7 @@ const user:UserState = useSelector((state: RootState) => state.user);
           <p className="flex items-center gap-2">Pricing <img className="h-4 w-4 hover:rotate-x-180"src={isHover===2?"/up-arrow.svg":"/down-arrow.png"}/>
         </p>
        { isHover===2&&<div onMouseEnter={() => setIsHover(2)} onMouseLeave={() => setIsHover(0)} 
-        className={ `absolute mt-[145px] mr-[30px] border-gray-500 bg-white text-white shadow-lg rounded-md p-5 `}>
+        className={ `absolute mt-[145px] mr-[30px] border-gray-500 bg-white text-white shadow-cyan-300 shadow-2xl rounded-md p-5 `}>
             <p className="p-2 cursor-pointer text-black hover:text-gray-600">Interview Copilot</p>
             <p className="p-2 cursor-pointer text-black hover:text-gray-600">Auto apply</p>
          </div>}
@@ -89,7 +89,7 @@ const user:UserState = useSelector((state: RootState) => state.user);
 
        {isHover===3 ? 
         <div   
-        className={ `fixed w-fit z-100 h-fit pt-[20px] px-10 mt-[520px] ml-[-800px] border-gray-500 bg-white text-white flex items-center justify-around  gap-[12rem] shadow-lg rounded-md  p-5 `}>
+        className={ `fixed w-fit z-300 h-fit pt-[10px] px-10 mt-[380px] ml-[-400px] shadow-cyan-300 shadow-2xl border-gray-500 bg-white text-white flex items-center justify-around  gap-[12rem]  rounded-md  p-5 `}>
           <div className="flex gap-[12rem]  justify-between">
            <div className="flex flex-col gap-4 text-black text-[18px]">
             <p className="text-[25px]">Resume Creation tools</p>
@@ -113,20 +113,7 @@ const user:UserState = useSelector((state: RootState) => state.user);
            </div>
            </div>
 
-           <div className="bg-gray-200 w-[400px] min-h-[300px] h-fit p-[40px]">
-            <p className="text-[25px]">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-               In tenetur consequuntur assumenda voluptatibus sint similique quidem,
-                amet distinctio illum labore!</p>
-                <div className="flex gap-4 items-center mt-4">
-                  <div>
-                    <img className="h-10 w-10 rounded-full bg-white p-2" src="/user-3-fill (1).png" alt="profile" />
-                  </div>
-                  <div>
-                    <p className="text-[18px] text-gray-400">Annya Sharma</p>
-                    <p className="text-[15px] text-gray-400">Marketing Manager of L&T</p>
-                  </div>
-                </div>
-           </div>
+           
          </div> :""}
         </div>
 
@@ -135,7 +122,7 @@ const user:UserState = useSelector((state: RootState) => state.user);
           <p className="flex items-center gap-2">Question Bank <img className="h-4 w-4 hover:rotate-x-180" src={isHover===4?"/up-arrow.svg":"/down-arrow.png"}/>
         </p>
        { isHover===4 &&<div onMouseEnter={() => setIsHover(4)} onMouseLeave={() => setIsHover(0)} 
-       className={ `absolute mt-[200px] mr-[30px] border-gray-500 bg-white text-white shadow-lg rounded-md  `}>
+       className={ `absolute mt-[200px] mr-[30px] border-gray-500 bg-white text-white shadow-cyan-300 shadow-2xl rounded-md  `}>
            <div className="font-medium text-gray-500  text-[15px] p-2">Interview Questions for Popular Roles</div>
            <div className="flex gap-4 items-center justify-between  px-4 ">
             <div className="p-1">

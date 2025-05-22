@@ -62,10 +62,20 @@ const[skills,setSkills]=useState("")
 const [resumeTemplate,setResumreTemplate]=useState<string>("first")
 const template=["first","second","third"]
 
+const[downloading,setDownloading]=useState(false)
+
+
+//for magnifying glass features
+  //const [isVisible, setIsVisible] = useState(false);
+//  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const imageRef = useRef<HTMLImageElement>(null);
+ // const[magnifyImage,setMagnifyImage]=useState("")
+
 
 const downloadPDF = async () => {
     const element = resumeRef.current;
     if (!resumeRef.current) return;
+    setDownloading(true)
 
     const canvas = await html2canvas(element, {
       scale: 2,
@@ -81,6 +91,7 @@ const downloadPDF = async () => {
 
     pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
     pdf.save("resume.pdf");
+    setDownloading(false)
   };
 
   // ai methods to generate details
@@ -168,6 +179,18 @@ const downloadPDF = async () => {
                 }
   }
 
+  // this is for magnify features
+  /*
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    const bounds = imageRef.current?.getBoundingClientRect();
+    if (!bounds) return;
+
+    const x = e.clientX - bounds.left;
+    const y = e.clientY - bounds.top;
+    setPosition({ x, y });
+  };
+  */
+
 
   return (
     <div className="min-w-[100vw] h-[100vh] bg-gradient-to-l from-gray-800 via-gray-200 to-gray-800  p-[20px]">
@@ -177,7 +200,7 @@ const downloadPDF = async () => {
             <div className="flex items-center gap-[20px]">
                 <p 
                 onClick={downloadPDF}
-                className="p-2 border-1 rounded-md text-xl font-light cursor-pointer">Download Resume</p>
+                className="p-2 border-1 rounded-md text-xl font-light cursor-pointer">{downloading?"Downloading..":'Download Resume'}</p>
                 <p className="p-2 bg-black font-light text-xl rounded-md cursor-not-allowed">Save</p>
 
             </div>
@@ -444,8 +467,16 @@ const downloadPDF = async () => {
 
                     <p className="text-[10px] font-semibold text-white text-center bg-gray-500 rounded-2xl p-2 max-w-[100px]">Choose resume template</p>
                   {template.map((t)=>(
-                    <p onClick={()=>setResumreTemplate(t)} className=" flex flex-col items-centerp-2  h-[160px] w-fit">
-                    <img className={`w-[180px] hover:border-2 ${t===resumeTemplate?"border-1 border-gray-600":""}`} src={t==="first"?"/first_resume.jpg":t==="second"?"/second_resume.jpg":"/third_resume.jpg"}/>
+                    <p onClick={()=>setResumreTemplate(t)} 
+                    className="  p-2  h-[160px] w-fit relative inline-block"
+                    
+                    
+                    >
+                    <img  ref={imageRef}
+                    className={`w-[180px] object-cover hover:border-2 ${t===resumeTemplate?"border-1 border-gray-600":""}`} 
+                    src={t==="first"?"/first_resume.jpg":t==="second"?"/second_resume.jpg":"/third_resume.jpg"}/>
+
+                   
                     </p>
                   ))}
                 </motion.div>

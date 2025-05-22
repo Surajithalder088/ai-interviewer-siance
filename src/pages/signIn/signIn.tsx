@@ -44,6 +44,9 @@ const handleSignIn=()=>{
             className=" bg-gray-600 p-2 rounded-2xl w-fit cursor-pointer text-white ">Submit</p>
             </div>
 
+            testing Email:user@mail.com |
+            testing password:123
+
         </div>
 
     </div>
