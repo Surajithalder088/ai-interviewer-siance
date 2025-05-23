@@ -93,11 +93,11 @@ const AutoApply = () => {
                  <div className="flex gap-[30px] py-3 font-bold text-lg [@media(max-width:1100px)]:text-[10px] [@media(max-width:1100px)]:gap-2 items-center justify-around"> 
                   <p 
                   onClick={()=>setJobState("profile")}
-                  className={`${jobState==="profile"?"text-gray-300":"text-gray-500"}text-center cursor-pointer`}>Profile</p> 
+                  className={`${jobState==="profile"?"text-gray-300":"text-gray-500"} cursor-pointer`}>Profile</p> 
                   <p  onClick={()=>setJobState("matched")}
-                  className={`${jobState==="matched"?"text-gray-300":"text-gray-500"}text-center cursor-pointer`}>Matched Job</p>
+                  className={`${jobState==="matched"?"text-gray-300":"text-gray-500"} cursor-pointer`}>Matched Job</p>
                    <p  onClick={()=>setJobState("applications")}
-                    className={`${jobState==="applications"?"text-gray-300":"text-gray-500"}text-center cursor-pointer`}> Your Applications</p>
+                    className={`${jobState==="applications"?"text-gray-300":"text-gray-500"} cursor-pointer`}> Your Applications</p>
                  </div>
 
                   <hr/>

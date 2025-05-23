@@ -31,7 +31,7 @@ const user:UserState = useSelector((state: RootState) => state.user);
 
   return (
    <>
-   <div className={`[@media(max-width:1100px)]:hidden  ${open?"max-w-fit rounded-r-md ":"max-w-screen"} px-5 [@media(max-width:800px)]:min-w-[100%] max-w-screen  flex justify-center items-center gap-3 h-[80px] bg-transparent backdrop-blur-md top-0 ${open?"bg-white":"bg-gradient-to-r from-gray-800 via-black to-gray-500 "}  `}>
+   <div className={`[@media(max-width:1100px)]:hidden  ${open?"max-w-fit rounded-r-md ":"max-w-screen"} px-5    flex justify-center items-center gap-3 h-[80px] bg-transparent backdrop-blur-md top-0 ${open?"bg-white":"bg-gradient-to-r from-gray-800 via-black to-gray-500 "}  `}>
    <Link to='/'>
    <div className="p-6  w-[180px] h-[80px] flex items-center justify-center">
                   <img className="w-9" src="/new_logo_siance.png"/> 
@@ -176,7 +176,7 @@ const user:UserState = useSelector((state: RootState) => state.user);
 
 {/*  below is for mobnile screen*/ }
 
-   <div className={`hidden [@media(max-width:1100px)]:flex items-center ${navOpen?"bg-white":"bg-transparent backdrop-blur-3xl"}  justify-between`}>
+   <div className={`hidden [@media(max-width:1100px)]:flex items-center ${navOpen?"bg-white":"bg-transparent backdrop-blur-3xl"} [@media(max-width:800px)]:min-w-[100%]  justify-between`}>
 
    <Link to='/'>
    <div className="p-6 flex items-center my-3 w-[160px] h-[80px]">

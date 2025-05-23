@@ -201,7 +201,11 @@ const user:UserState = useSelector((state: RootState) => state.user);
       </Link>
         <div className="flex gap-4 mr-6 items-center">
 
-         { user.name===""? <div className="bg-orange-500 rounded-md px-4 py-2 text-white text-[15px]">Sign Up</div>
+         { user.name===""? <div 
+         onClick={()=>navigate('/sign-in')}
+         className="bg-orange-500 rounded-md px-4 py-2 text-white text-[15px]">
+          Sign Up
+          </div>
          :
          <div
     
