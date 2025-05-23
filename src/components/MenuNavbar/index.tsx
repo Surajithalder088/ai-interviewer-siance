@@ -31,7 +31,7 @@ const user:UserState = useSelector((state: RootState) => state.user);
 
   return (
    <>
-   <div className={`[@media(max-width:1100px)]:hidden  ${open?"max-w-fit rounded-r-md ":"max-w-screen"} px-5   flex justify-center items-center gap-3 h-[80px] bg-transparent backdrop-blur-md top-0 ${open?"bg-white":"bg-gradient-to-r from-gray-800 via-black to-gray-500 "}  `}>
+   <div className={`[@media(max-width:1100px)]:hidden  ${open?"max-w-fit rounded-r-md ":"max-w-screen"} px-5 [@media(max-width:800px)]:min-w-[100%] max-w-screen  flex justify-center items-center gap-3 h-[80px] bg-transparent backdrop-blur-md top-0 ${open?"bg-white":"bg-gradient-to-r from-gray-800 via-black to-gray-500 "}  `}>
    <Link to='/'>
    <div className="p-6  w-[180px] h-[80px] flex items-center justify-center">
                   <img className="w-9" src="/new_logo_siance.png"/> 
@@ -277,45 +277,20 @@ const user:UserState = useSelector((state: RootState) => state.user);
  </p>
 { isHover===2&&<div onMouseEnter={() => setIsHover(2)} onMouseLeave={() => setIsHover(0)} 
  className={ ` mr-[30px] border-gray-500 bg-white text-black shadow-lg rounded-md p-5 `}>
-     <p className="p-2 cursor-pointer hover:text-orange-500">Interview Copilot</p>
-     <p className="p-2 cursor-pointer hover:text-orange-500">Auto apply</p>
+    <Link className="no-underline !text-black !font-bold" to='/subcription/2'>  <p className="p-2 cursor-pointer hover:text-orange-500">Interview Copilot</p></Link>
+    <Link className="no-underline !text-black !font-bold" to='/subcription/1'>  <p className="p-2 cursor-pointer hover:text-orange-500">Auto apply</p></Link>
   </div>}
  </div>
 
- <div onClick={()=>{isHover===3?setIsHover(0):setIsHover(3)}} 
- className=" relative flex flex-col hover:bg-orange-100 hover:text-orange-400 p-2 rounded-md cursor-pointer items-center gap-2">
-   <p className="flex items-center gap-2">Resources <img className="h-4 w-4 hover:rotate-x-180" src={isHover===3?"/up-arrow.svg":"/down-arrow.png"}/>
- </p>
+         <p 
+        onClick={(e) => {
+        e.stopPropagation();
+        navigate("/interview-coach");
+        console.log("Clicked inside");
+      }} 
+        className="flex hover:bg-gray-200 hover:text-gray-600 p-2 rounded-md cursor-pointer items-center">AI Career Coach 
 
-{isHover===3 ? 
- <div   
- className={ ` w-fit h-full pt-[20px] px-10   border-gray-500 bg-white text-black flex items-center justify-around  gap-[12rem] shadow-lg rounded-md  p-5 `}>
-   <div className="flex flex-col gap-[2rem]   justify-between">
-    <div className="flex flex-col gap-4 text-[10px]">
-     <p className="text-[12px]">Resume Creation tools</p>
-     <p className="cursor-pointer hover:text-orange-500">Recruiters Hotline</p>
-     <p className="cursor-pointer hover:text-orange-500">Resume Checker</p>
-     <p className="cursor-pointer hover:text-orange-500">Cover Letter Generator</p>
-    </div>
-
-    <div className="flex flex-col gap-8 bg-white">
-     <div className="flex flex-col gap-4 text-[10px]">
-       <p className="text-[12px]">Career Guidance Tools</p>
-       <p className="cursor-pointer hover:text-orange-500">AI Career Coach</p>
-       <p className="cursor-pointer hover:text-orange-500">LinkedIn Profile Optimizer</p>
-       <p className="cursor-pointer hover:text-orange-500">LinkedIn Resume Builder</p>
-     </div>
-     <div  className="flex flex-col gap-4 text-[10px]">
-       <p className="text-[12px]">Support</p>
-       <p className="cursor-pointer hover:text-orange-500"> Guides</p>
-       <p className="cursor-pointer hover:text-orange-500">Blog</p>
-     </div>
-    </div>
-    </div>
-
-  
-  </div> :""}
- </div>
+        </p>
 
  <div  onClick={()=>{isHover===4?setIsHover(0):setIsHover(4)}} 
  className="flex flex-col hover:bg-orange-100 hover:text-orange-400 p-2 rounded-md cursor-pointer items-center gap-0">
@@ -338,7 +313,13 @@ className={ ` mr-[30px] border-gray-500 bg-white text-black shadow-lg rounded-md
         <p className="cursor-pointer hover:text-orange-500">SQL</p>
      </div>
     </div>
-    <div className="bg-gray-200 flex items-center justify-center text-orange-400 p-4">Browse All Questions {">"}</div>
+    <div
+     onClick={(e) => {
+        e.stopPropagation();
+        navigate("/question-bank");
+        console.log("Clicked inside");
+      }} 
+    className="bg-gray-200 flex items-center justify-center text-orange-400 p-4">Browse All Questions {">"}</div>
   </div>}
  </div>
 </div>

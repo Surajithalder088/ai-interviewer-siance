@@ -65,7 +65,7 @@ const AiResumeBuilder = () => {
 
     <div className="flex flex-col items-center pt-[60px]">
 
-      <div className={`${sideBarOpen===false?"hidden":"flex flex-col gap-6"}  h-fit max-h-[100vh] py-[80px] w-[80%]`}>
+      <div className={`${sideBarOpen===false?"hidden":"flex flex-col gap-6"} [@media(max-width:800px)]:mb-[20rem] h-fit max-h-[100vh] py-[80px] w-[80%]`}>
        <p className="text-white text-4xl font-bold w-full">Document Center</p>
        <p className="text-gray-200 font-semibold text-md ">Upload your resume, cover letter, or any other job application materials,
          and let our AI turn them into polished, standout documents. From refining structure to highlighting your unique strengths,

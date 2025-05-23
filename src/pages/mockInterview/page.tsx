@@ -128,7 +128,7 @@ const [isHovered, setIsHovered] = useState(false);
    
     <div className={ `flex flex-col items-center pt-[60px]` }>
 
-      <div className={`${sideBarOpen===false?"hidden":"flex flex-col gap-6"}  h-fit max-h-[100vh] py-[80px] w-[80%]`}>
+      <div className={`${sideBarOpen===false?"hidden":"flex flex-col gap-6"}  h-fit max-h-[100vh] py-[80px] [@media(max-width:800px)]:mb-[250px] w-[80%]`}>
        <p className="text-white text-4xl font-bold w-full">Mock Interview</p>
        <p className="text-gray-200 font-semibold text-md ">Elevate your interview skills with AI Mock
          Interview that offers realistic practice sessions, instant feedback,
@@ -168,7 +168,7 @@ const [isHovered, setIsHovered] = useState(false);
           onMouseLeave={()=>{
             setHoverDetail("")
           }}
-          className="absolute mt-[180px] mr-[400px] h-fit max-w-[200px] shadow-2xl shadow-blue-700 z-100 bg-white p-4 rounded-b-2xl rounded-r-2xl">
+          className="absolute mt-[180px] mr-[400px] [@media(max-width:1100px)]:mr-[50px] [@media(max-width:1100px)]:mt-[1px] h-fit max-w-[200px] shadow-2xl shadow-blue-700 z-100 bg-white p-4 rounded-b-2xl rounded-r-2xl">
           <p>AI Mock Interview based on specific Job Profile!</p>
           </div>}
 
@@ -238,7 +238,7 @@ const [isHovered, setIsHovered] = useState(false);
        </div>
       </div>
      
-      <div className="flex flex-col items-center justify-center h-screen gap-4 [@media(max-width:1100px)]:my-[300px] [@media(max-width:1100px)]:w-[100%]">
+      <div className="flex flex-col items-center justify-center h-screen gap-4 [@media(max-width:1100px)]:my-[30px] [@media(max-width:1100px)]:w-[100%]">
         <motion.div
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}

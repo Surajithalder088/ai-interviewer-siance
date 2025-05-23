@@ -37,18 +37,22 @@ const QuestionBank = () => {
         <Navbar/>
         </div>
 
-     <div className="flex flex-col items-center">
+     <div className="flex flex-col items-center [@media(max-width:1100px)]:max-w-screen">
 
       <p className="text-4xl p-[30px] text-white">Question Bank</p>
       <hr/>
 
-      <div className="w-[80%] text-gray-200 px-[40px]">
-        <div className="w-full py-4 flex items-center gap-[40px]">
+      <div className="w-[80%] text-gray-200 px-[40px] [@media(max-width:1100px)]:w-[100%]">
+        <div className="w-full py-4 flex items-center gap-[40px] [@media(max-width:1100px)]:flex-col [@media(max-width:800px)]:text-[10px] ">
+        <div className="w-full py-1 flex items-center gap-1">
+
         <div className="px-3 py-1 border-1 rounded-md flex items-center justify-between gap-[30px] bg-gray-500 cursor-pointer">Category  <img src="/unfold.png" className="w-3"/></div>
         <div className="px-3 py-1 border-1 rounded-md flex items-center justify-between gap-[30px] bg-gray-500 cursor-pointer">Company  <img src="/unfold.png" className="w-3"/></div>
         <div className="px-3 py-1 border-1 rounded-md flex items-center justify-between gap-[30px] bg-gray-500 cursor-pointer">Difficulty Level  <img src="/unfold.png" className="w-3"/></div>
-        <div className="px-1 py-1 border-1 border-gray-400 rounded-md flex items-center justify-between gap-[30px] bg-gray-500 ">
-          <input placeholder="Search" className="outline-none p-1"/><img src="/search-icon.png" className="w-9 bg-gray-500 rounded-lg cursor-pointer hover:bg-gray-400"/>
+        </div>
+        <div className="px-1 py-1 border-1 border-gray-400 rounded-md flex items-center justify-between  bg-gray-500 w-fit ">
+          <input placeholder="Search" className="outline-none p-1"/>
+          <img src="/search-icon.png" className="w-9 bg-gray-500 rounded-lg cursor-pointer h-full hover:bg-gray-400"/>
         </div>
 
         </div>
@@ -58,13 +62,15 @@ const QuestionBank = () => {
         </div>
       </div>
 
+      
+
       <div className="w-[80%] border-1 rounded-lg p-[20px] bg-gray-800 my-2">
 
         <div className="flex items-center justify-between text-gray-400">
           <p>284.7K views</p> <p>28 minutes ago</p>
         </div>
        <p className="text-xl font-bold text-white">Tell me about yourself.</p>
-        <div className="flex items-center gap-3 text-white">
+        <div className="flex items-center gap-3 text-white [@media(max-width:800px)]:text-[10px] ">
           <p>Algorithms</p><p>|</p>
           <p>Asked at Meta</p><p>|</p>
           <p>Difficulty:Medium</p>
@@ -81,7 +87,7 @@ const QuestionBank = () => {
           <p>284.7K views</p> <p>28 minutes ago</p>
         </div>
        <p className="text-xl font-bold text-white">Tell me about yourself.</p>
-        <div className="flex items-center gap-3 text-white">
+        <div className="flex items-center gap-3 text-white [@media(max-width:800px)]:text-[10px] ">
           <p>Algorithms</p><p>|</p>
           <p>Asked at Meta</p><p>|</p>
           <p>Difficulty:Medium</p>
@@ -98,7 +104,7 @@ const QuestionBank = () => {
           <p>284.7K views</p> <p>28 minutes ago</p>
         </div>
        <p className="text-xl font-bold text-white">Tell me about yourself.</p>
-        <div className="flex items-center gap-3 text-white">
+        <div className="flex items-center gap-3 text-white [@media(max-width:800px)]:text-[10px] ">
           <p>Algorithms</p><p>|</p>
           <p>Asked at Meta</p><p>|</p>
           <p>Difficulty:Medium</p>
@@ -109,6 +115,78 @@ const QuestionBank = () => {
         </div>
 
       </div>
+      <div className="w-[80%] border-1 rounded-lg p-[20px] bg-gray-800 my-2">
+
+        <div className="flex items-center justify-between text-gray-400">
+          <p>284.7K views</p> <p>28 minutes ago</p>
+        </div>
+       <p className="text-xl font-bold text-white">Tell me about yourself.</p>
+        <div className="flex items-center gap-3 text-white [@media(max-width:800px)]:text-[10px] ">
+          <p>Algorithms</p><p>|</p>
+          <p>Asked at Meta</p><p>|</p>
+          <p>Difficulty:Medium</p>
+        </div>
+        <div className="flex items-center justify-between my-3 p-2 rounded-lg border-1 text-white">
+          <p>580 Users Practiced</p>
+          <p className="cursor-pointer bg-cyan-400 px-4 rounded-lg text-black font-semibold">Practice with This Question</p>
+        </div>
+
+      </div>
+      <div className="w-[80%] border-1 rounded-lg p-[20px] bg-gray-800 my-2">
+
+        <div className="flex items-center justify-between text-gray-400">
+          <p>284.7K views</p> <p>28 minutes ago</p>
+        </div>
+       <p className="text-xl font-bold text-white">Tell me about yourself.</p>
+        <div className="flex items-center gap-3 text-white [@media(max-width:800px)]:text-[10px] ">
+          <p>Algorithms</p><p>|</p>
+          <p>Asked at Meta</p><p>|</p>
+          <p>Difficulty:Medium</p>
+        </div>
+        <div className="flex items-center justify-between my-3 p-2 rounded-lg border-1 text-white">
+          <p>580 Users Practiced</p>
+          <p className="cursor-pointer bg-cyan-400 px-4 rounded-lg text-black font-semibold">Practice with This Question</p>
+        </div>
+
+      </div>
+      <div className="w-[80%] border-1 rounded-lg p-[20px] bg-gray-800 my-2">
+
+        <div className="flex items-center justify-between text-gray-400">
+          <p>284.7K views</p> <p>28 minutes ago</p>
+        </div>
+       <p className="text-xl font-bold text-white">Tell me about yourself.</p>
+        <div className="flex items-center gap-3 text-white [@media(max-width:800px)]:text-[10px] ">
+          <p>Algorithms</p><p>|</p>
+          <p>Asked at Meta</p><p>|</p>
+          <p>Difficulty:Medium</p>
+        </div>
+        <div className="flex items-center justify-between my-3 p-2 rounded-lg border-1 text-white">
+          <p>580 Users Practiced</p>
+          <p className="cursor-pointer bg-cyan-400 px-4 rounded-lg text-black font-semibold">Practice with This Question</p>
+        </div>
+
+      </div>
+      <div className="w-[80%] border-1 rounded-lg p-[20px] bg-gray-800 my-2">
+
+        <div className="flex items-center justify-between text-gray-400">
+          <p>284.7K views</p> <p>28 minutes ago</p>
+        </div>
+       <p className="text-xl font-bold text-white">Tell me about yourself.</p>
+        <div className="flex items-center gap-3 text-white [@media(max-width:800px)]:text-[10px] ">
+          <p>Algorithms</p><p>|</p>
+          <p>Asked at Meta</p><p>|</p>
+          <p>Difficulty:Medium</p>
+        </div>
+        <div className="flex items-center justify-between my-3 p-2 rounded-lg border-1 text-white">
+          <p>580 Users Practiced</p>
+          <p className="cursor-pointer bg-cyan-400 px-4 rounded-lg text-black font-semibold">Practice with This Question</p>
+        </div>
+
+      </div>
+      
+      
+      
+       
 
 
      </div>

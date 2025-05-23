@@ -80,7 +80,7 @@ const InterviewCopilot = () => {
 
 
   return (
-    <div className={`w-[100vw]  relative  h-full min-h-[100vh] bg-gradient-to-r from-black via-gray-600 to-black`}>
+    <div className={`w-[100vw]  relative  h-full min-h-[100vh] [@media(max-width:1100px)]:max-w-screen bg-gradient-to-r from-black via-gray-600 to-black`}>
       <div
     className={`fixed ${sideBarOpen===true?"hidden":""} top-0 w-full z-50 transition-transform  duration-300 ${showNavbar===true?"translate-y-0":"-translate-y-full"}`}
     >
@@ -93,9 +93,9 @@ const InterviewCopilot = () => {
      </div>
 
    
-    <div className={ `flex flex-col items-center pt-[60px]` }>
+    <div className={ `flex flex-col items-center pt-[60px] [@media(max-width:1100px)]:pt-[2px] [@media(max-width:700px)]:gap-[40px]` }>
 
-      <div className={`${sideBarOpen===false?"hidden":"flex flex-col gap-6"}  h-fit max-h-[100vh] py-[80px] w-[80%]`}>
+      <div className={`${sideBarOpen===false?"hidden":"flex flex-col gap-6"} [@media(max-width:1100px)]:mt-[150px] [@media(max-width:800px)]:mb-[200px] [@media(max-width:700px)]:mb-[500px] h-fit max-h-[100vh] py-[80px] w-[80%]`}>
        <p className="text-white text-4xl font-bold w-full">Live Interview</p>
        <p className="text-gray-200 font-semibold text-md ">Interview Copilot is your real-time AI partner that offers on-the-fly, personalized interview support.
          It transcribes each question, analyzes job descriptions and company details, and provides dynamic guidance tailored to your background. 
@@ -163,7 +163,7 @@ const InterviewCopilot = () => {
        </div>
       </div>
      
-      <div className="flex flex-col items-center justify-center h-screen [@media(max-width:1100px)]:mt-[300px]  gap-4 [@media(max-width:1100px)]:w-[100%]">
+      <div className="flex flex-col items-center justify-center h-screen [@media(max-width:1100px)]:mt-[100px]  [@media(max-width:700px)]:mt-[200px]  gap-4 [@media(max-width:1100px)]:w-[100%]">
         <motion.div
         initial={{ opacity: 0, y: -100 }}
         animate={{ opacity: 1, y: 0 }}

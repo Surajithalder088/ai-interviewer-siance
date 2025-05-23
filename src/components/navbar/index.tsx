@@ -24,7 +24,7 @@ const user:UserState = useSelector((state: RootState) => state.user);
 
   return (
    <>
-   <div className={`[@media(max-width:1100px)]:hidden max-w-screen   flex justify-center items-center gap-4 h-[80px] bg-transparent backdrop-blur-md top-0 bg-gradient-to-r from-gray-800 via-black to-gray-500 `}>
+   <div className={`[@media(max-width:1100px)]:hidden max-w-screen   [@media(max-width:800px)]:min-w-[100%]  flex justify-center items-center gap-4 h-[80px] bg-transparent backdrop-blur-md top-0 bg-gradient-to-r from-gray-800 via-black to-gray-500 `}>
      <Link to='/'>
    <div className="p-6  w-[180px] h-[80px] flex items-center justify-center">
                   <img className="w-9" src="/new_logo_siance.png"/> 
@@ -78,8 +78,8 @@ const user:UserState = useSelector((state: RootState) => state.user);
         </p>
        { isHover===2&&<div onMouseEnter={() => setIsHover(2)} onMouseLeave={() => setIsHover(0)} 
         className={ `absolute mt-[145px] mr-[30px] border-gray-500 bg-white text-white shadow-cyan-300 shadow-2xl rounded-md p-5 `}>
-            <p className="p-2 cursor-pointer text-black hover:text-gray-600">Interview Copilot</p>
-            <p className="p-2 cursor-pointer text-black hover:text-gray-600">Auto apply</p>
+            <Link className="no-underline !text-black !font-bold" to='/subcription/2'> <p className="p-2 cursor-pointer text-black hover:text-gray-600">Interview Copilot</p></Link>
+             <Link className="no-underline !text-black !font-bold" to='/subcription/1'><p className="p-2 cursor-pointer text-black hover:text-gray-600">Auto apply</p></Link>
          </div>}
         </div>
         <div onMouseEnter={() => setIsHover(3)} onMouseLeave={() => setIsHover(0)} 
@@ -190,7 +190,7 @@ const user:UserState = useSelector((state: RootState) => state.user);
 
 {/*  below is for mobnile screen*/ }
 
-   <div className={`hidden [@media(max-width:1100px)]:flex items-center ${navOpen?"bg-white":"bg-transparent backdrop-blur-3xl"}  justify-between`}>
+   <div className={`hidden [@media(max-width:1100px)]:flex items-center ${navOpen?"bg-white":"bg-transparent backdrop-blur-3xl"}  justify-between max-w-screen`}>
 
    <Link to='/'>
    <div className="p-6 flex items-center  my-3 w-[160px] h-[80px]">
@@ -239,7 +239,7 @@ const user:UserState = useSelector((state: RootState) => state.user);
         </div>
    </div>
 
-   <div className={`absolute  w-full h-fit bg-white  ${navOpen?"flex  ":"hidden"} rounded-b-xl flex-col items-center justify-center gap-4`}>
+   <div className={`absolute  w-full h-fit bg-white  ${navOpen?"flex  ":"hidden"} rounded-b-xl flex-col items-center z-[200] justify-center gap-4`}>
   
    <div className="flex flex-col gap-4 text-black font-bold text-[12px] items-center justify-around py-4 w-[80%]">
 
@@ -292,8 +292,8 @@ const user:UserState = useSelector((state: RootState) => state.user);
  </p>
 { isHover===2&&<div onMouseEnter={() => setIsHover(2)} onMouseLeave={() => setIsHover(0)} 
  className={ ` mr-[30px] border-gray-500 bg-white text-black shadow-lg rounded-md p-5 `}>
-     <p className="p-2 cursor-pointer hover:text-orange-500">Interview Copilot</p>
-     <p className="p-2 cursor-pointer hover:text-orange-500">Auto apply</p>
+     <Link className="no-underline !text-black !font-bold" to='/subcription/2'><p className="p-2 cursor-pointer hover:text-orange-500">Interview Copilot</p></Link>
+     <Link className="no-underline !text-black !font-bold" to='/subcription/3'> <p className="p-2 cursor-pointer hover:text-orange-500">Auto apply</p></Link>
   </div>}
  </div>
 

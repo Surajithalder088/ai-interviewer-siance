@@ -67,7 +67,7 @@ const AutoApply = () => {
 
 
   return (
-    <div  className="w-[100vw]   h-full min-h-[100vh] bg-gradient-to-r from-black via-gray-600 to-black">
+    <div  className="w-[100vw]   h-full min-h-[100vh] bg-gradient-to-r from-black via-gray-600 to-black [@media(max-width:1100px)]:w-screen">
        <div
     className={`fixed ${sideBarOpen===true?"hidden":""} top-0 w-full z-50 transition-transform duration-300 ${showNavbar?"translate-y-0":"-translate-y-full"}`}
     >
@@ -90,14 +90,14 @@ const AutoApply = () => {
             <div className=" flex flex-col my-[30px] text-white bg-gray-600 rounded-lg p-5">
               {
                 <div className="flex flex-col">
-                 <div className="flex gap-[30px] py-3 font-bold text-lg"> 
+                 <div className="flex gap-[30px] py-3 font-bold text-lg [@media(max-width:1100px)]:text-[10px] [@media(max-width:1100px)]:gap-2 items-center justify-around"> 
                   <p 
                   onClick={()=>setJobState("profile")}
-                  className={`${jobState==="profile"?"text-gray-300":"text-gray-500"} cursor-pointer`}>Profile</p> 
+                  className={`${jobState==="profile"?"text-gray-300":"text-gray-500"}text-center cursor-pointer`}>Profile</p> 
                   <p  onClick={()=>setJobState("matched")}
-                  className={`${jobState==="matched"?"text-gray-300":"text-gray-500"} cursor-pointer`}>Matched Job</p>
+                  className={`${jobState==="matched"?"text-gray-300":"text-gray-500"}text-center cursor-pointer`}>Matched Job</p>
                    <p  onClick={()=>setJobState("applications")}
-                    className={`${jobState==="applications"?"text-gray-300":"text-gray-500"} cursor-pointer`}> Your Applications</p>
+                    className={`${jobState==="applications"?"text-gray-300":"text-gray-500"}text-center cursor-pointer`}> Your Applications</p>
                  </div>
 
                   <hr/>
@@ -206,7 +206,7 @@ const AutoApply = () => {
         </div>
 
 
-            <div className="flex [@media(max-width:1100px)]:flex-col items-center gap-4 m-[100px] [@media(max-width:1100px)]:m-3">
+            <div className="flex [@media(max-width:1100px)]:flex-col items-center gap-4 m-[100px] [@media(max-width:1100px)]:mt-[60px] [@media(max-width:1100px)]:m-3">
                 <div className="flex flex-col items-center [@media(max-width:1100px)]:items-center gap-4">
                     <motion.p
                     initial={{ opacity: 0, x: -100 }}

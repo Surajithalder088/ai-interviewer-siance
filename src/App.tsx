@@ -32,7 +32,7 @@ function App() {
 
   return (
    <>
-   <div className=' relative w-screen  h-full min-h-[100vh] bg-gradient-to-r from-black via-gray-600 to-black'>
+   <div className=' relative w-screen [@media(max-width:1100px)]:max-w-screen  h-full min-h-[100vh] bg-gradient-to-r from-black via-gray-600 to-black'>
    
     <div
     className={`fixed top-0 w-full z-50 transition-transform duration-300 ${showNavbar?"translate-y-0":"-translate-y-full"}`}

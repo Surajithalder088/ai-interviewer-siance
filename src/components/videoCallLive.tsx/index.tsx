@@ -132,12 +132,12 @@ const VideoCall: React.FC = () => {
   };
 
   return (
-    <div className="flex w-full [@media(max-width:1100px)]:flex-col items-center min-h-[250%] h-full">
+    <div className="flex w-full [@media(max-width:1100px)]:flex-col [@media(max-width:1100px)]:max-w-[100%] items-center min-h-[250%] h-full">
       <motion.div
       initial={{ opacity: 0, x: -100 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.9 }}
-      className="w-[40%] [@media(max-width:1100px)]:w-[90%] p-5">
+      className="w-[40%] [@media(max-width:1100px)]:w-[100%] p-1">
         <h2>🎥 1-to-1 Video Chat</h2>
         <p className="bg-gray-400 w-fit p-2 rounded-lg">
           <strong>Your ID:</strong> {peerId}
@@ -169,20 +169,20 @@ const VideoCall: React.FC = () => {
          
         </div>
 
-        <div className="flex items-center text-black gap-3 mt-4">
-          <button onClick={toggleAudio} className="bg-gray-300 p-2 rounded-lg">
+        <div className="flex items-center text-black gap-3 mt-4 [@media(max-width:1100px)]:min-w-[100%] font-semibold">
+          <div onClick={toggleAudio} className="bg-gray-300 p-2 rounded-lg cursor-pointer">
             {audioEnabled ? "🔇 Mute Mic" : "🎤 Unmute Mic"}
-          </button>
-          <button onClick={toggleVideo} className="bg-gray-300 p-2 rounded-lg">
+          </div>
+          <div onClick={toggleVideo} className="bg-gray-300 p-2 rounded-lg cursor-pointer">
             {videoEnabled ? "📷 Hide Video" : "📸 Show Video"}
-          </button>
-          <button onClick={endCall} className="bg-red-400  p-2 rounded-lg">
+          </div>
+          <div onClick={endCall} className="bg-red-400  p-2 rounded-lg cursor-pointer">
             End Call
-          </button>
+          </div>
         </div>
 
         {incomingCall && (
-          <div className="mt-6 bg-yellow-200 p-4 fixed z-100 [@media(max-width:1100px)]:absolute top-0 rounded-md">
+          <div className="mt-6 bg-yellow-200 p-4 text-black fixed z-100 [@media(max-width:1100px)]:absolute top-0 rounded-md">
             <p className="mb-2 font-bold">📞 Incoming call...</p>
             <div className="flex gap-3">
               <button onClick={acceptCall} className="bg-green-500  px-4 py-2 rounded-md">
@@ -199,7 +199,7 @@ const VideoCall: React.FC = () => {
        initial={{ opacity: 0, x: 100 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.9 }}
-      className="w-[50%] [@media(max-width:1100px)]:min-h-[80%] [@media(max-width:1100px)]:w-[80%] h-full min-h-[500px] rounded-lg p-2 flex gap-1  ">
+      className="w-[50%] [@media(max-width:1100px)]:min-h-[80%] [@media(max-width:1100px)]:w-[100%] h-full min-h-[500px] rounded-lg p-2 flex gap-4  ">
        
         <div className=" w-[50%] bg-gray-300 p-3 text-black overflow-y-scroll max-h-[500px] py-2">
           <p className="text-center font-bold absolute bg-transparent backdrop-blur-lg p-3 rounded-lg">Interviewer's </p>

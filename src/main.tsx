@@ -15,6 +15,7 @@ import store from './store/store.ts'
 import SignIn from './pages/signIn/signIn.tsx'
 import GeneralInterview from './pages/generalInterview/page.tsx'
 import AiResumeEditor from './pages/resumeEditor/page.tsx'
+import Subcription from './pages/subcription/page.tsx'
 
 
 createRoot(document.getElementById('root')!).render(
@@ -33,6 +34,7 @@ createRoot(document.getElementById('root')!).render(
      <Route path="/general-interview/:id" element={<GeneralInterview/>} />
      <Route path="/sign-in" element={<SignIn/>} />
      <Route path="/ai-resume-editor" element={<AiResumeEditor/>} />
+     <Route path="/subcription/:id" element={<Subcription/>} /> {/* id is to define is this copilote(enen) or auto apply(odd) */}
 
     </Routes>
     </BrowserRouter>
