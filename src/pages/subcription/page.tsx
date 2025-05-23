@@ -42,14 +42,14 @@ const Subcription = () => {
         </div>
 
         <div className="flex flex-col items-center [@media(max-width:1100px)]:max-w-screen">
-            <p className="text-4xl p-[30px] text-white">Subcription</p>
-            <div className=" flex items-center gap-[20px]">
+            <p className="text-4xl p-[30px] text-white">Subcription plan for :</p>
+            <div className=" flex items-center gap-[20px] p-3 rounded-lg bg-gray-500">
                 <p onClick={()=>setSubcription("copilote")}
-                className={`text-lg font-bold p-2 rounded-lg flex flex-col ${subcription==='copilote'?" border-1 border-orange-500 text-white  ":"bg-orange-200 text-gray-500 cursor-pointer "} `}>Interview Copilote
+                className={`text-lg font-bold p-2 rounded-lg flex flex-col ${subcription==='copilote'?" border-1 border-orange-500 text-white  ":"bg-orange-200 text-gray-500 cursor-pointer text-[10px]"} `}>Interview Copilote
               
                 </p>
                 <p onClick={()=>setSubcription("autoapply")}
-                 className={`text-lg font-bold p-2 rounded-lg ${subcription==='autoapply'?" border-1  border-yellow-500 text-white ":"bg-yellow-200 text-gray-500 cursor-pointer "}`}>Auto Apply
+                 className={`text-lg font-bold p-2 rounded-lg ${subcription==='autoapply'?" border-1  border-yellow-500 text-white ":"bg-yellow-200 text-gray-500 cursor-pointer text-[10px]"}`}>Auto Apply
              
                  </p>
             </div>
@@ -58,7 +58,9 @@ const Subcription = () => {
 
             {subcription==="copilote"?
             <div className="w-[80%]">
-                copilote
+                <div>
+                  <p>We are here to help you succeed for your Interviews</p>
+                </div>
             </div>
             :
             <div>
